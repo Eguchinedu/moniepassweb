@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="login-section">
+    <div class="section-header">
+        <p class="sect-one">LOGO</p>
+        <hr>
+        <p class="sect-two">PLACEHOLDER</p>
+    </div>
+    <div class="title">
+        <h2>Log In</h2>
+        <p>Welcome back! Please enter your details</p>
+    </div>
+    <form   action="" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <div class="form-group">
+            <div class="error-field">
+                <div class="input-icon">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" name="email" id="email" class="login-field" placeholder="Email Address" formControlName="email" required 
+                />
+                </div>
+                    <span [class]="loginForm.controls['email'].dirty && loginForm.hasError('required', 'email') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+            </div>
+        </div>
+        <div class="form-group">
+                <div class="password-span">
+                    <div class="error-field">
+                        <div class="input-icon">
+                            <i class="bi bi-lock"></i>
+                            <input [type]="changeType ? 'password' : 'text'" name="password" id="password" formControlName="password"  placeholder="Password" class="login-field" required 
+                />
+                        </div>
+                        <span class="icon-span" (click)="viewPass()"><i [class]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
+                        <span [class]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                    </div>
+                </div>
+        </div>
+        <div class="match-error">
+            <p *ngIf="loginForm.hasError('email', 'email')" class="alert alert-danger">Please type in a valid email</p>
+            <p *ngIf="loginForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short</p>
+        </div>
+        
+        <div class="form-section">
+            <div class="forgotpwd">
+                 <a class="nav-link" aria-current="page" 
+             routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/forgot-pwd']" >Forgot Password?</a>
+            
+        </div>
+        </div>
+        <div class="login-button">
+            <button class="log-btn" [disabled]="!loginForm.valid" >Sign In</button>
+        </div>
+    </form>
+    <div class="sign-up-link"><p>
+        Don't have an account? 
+        <a  aria-current="page" 
+                 routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/sign-up']" >Sign Up</a>
+    </p></div>
+    </div>
+</div>
+
+

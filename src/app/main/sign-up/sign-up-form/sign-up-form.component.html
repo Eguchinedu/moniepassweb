@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="login-section">
+    <div class="section-header">
+        <p class="sect-one">LOGO</p>
+        <hr>
+        <p class="sect-two">PLACEHOLDER</p>
+    </div>
+    <div class="title">
+        <h2>Sign Up</h2>
+        <p>Welcome back! Please enter your details</p>
+    </div>
+    <form   action="" (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+        <div class="flex-form">
+            <div class="form-group">
+                <div class="error-field">
+                    <div class="input-icon">
+                        <i class="bi bi-person"></i>
+                        <input type="text" name="firstName" id="firstName" class="login-field" placeholder="Firstname" formControlName="firstName" required 
+                    />
+                    </div>
+                        <span [class]="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required', 'firstName') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="error-field">
+                    <div class="input-icon">
+                        <i class="bi bi-person"></i>
+                        <input type="text" name="lastName" id="lastName" class="login-field" placeholder="Lastname" formControlName="lastName" required 
+                    />
+                    </div>
+                        <span [class]="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required', 'lastName') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="flex-form">
+        <div class="form-group">
+            <div class="error-field">
+                <div class="input-icon">
+                    <i class="bi bi-person"></i>
+                    <input type="text" name="username" id="username" class="login-field" placeholder="Username" formControlName="username" required 
+                />
+                </div>
+                    <span [class]="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="error-field">
+                <div class="input-icon">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" name="email" id="email" class="login-field" placeholder="Email Address" formControlName="email" required 
+                />
+                </div>
+                    <span [class]="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+                <div class="password-span">
+                    <div class="error-field">
+                        <div class="input-icon">
+                            <i class="bi bi-lock"></i>
+                            <input [type]="changeType ? 'password' : 'text'" name="password" id="password" formControlName="password"  placeholder="Password" class="login-field" required 
+                />
+                        </div>
+                        <span class="icon-span" (click)="viewPass()"><i [class]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
+                        <span [class]="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+                <div class="password-span">
+                    <div class="error-field">
+                        <div class="input-icon">
+                    <i class="bi bi-lock"></i>
+                        <input [type]="changeType2 ? 'password' : 'text'"  id="confirmPassword"  placeholder="Confirm your password" formControlName="confirmPassword" class="login-field" required 
+            />
+                        </div>
+                        <span class="icon-span" (click)="viewPass2()"><i [class]="visible2 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
+                        <span [class]="signUpForm.controls['confirmPassword'].dirty && signUpForm.hasError('required', 'confirmPassword') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                    </div>
+                </div>
+        </div>
+        <div class="match-error">
+            <p *ngIf="signUpForm.errors?.['passwordmatcherror']" class="alert alert-danger">Passwords do not match!!</p>
+            <p *ngIf="signUpForm.hasError('email', 'email')" class="alert alert-danger">Please type in a valid email</p>
+            <p *ngIf="signUpForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short</p>
+        </div>
+        <div class="login-button">
+            <button class="log-btn" [disabled]="!signUpForm.valid" >Sign Up</button>
+        </div>
+    </form>
+    <div class="sign-up-link"><p>
+        Already have an account? 
+        <a  aria-current="page" 
+                 routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/login']" >Log In</a>
+    </p></div>
+    </div>
+</div>
+
+
+

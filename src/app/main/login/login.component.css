@@ -1,0 +1,37 @@
+.main-container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+.section-one{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-one {
+    flex-basis: 40%;
+    background-color: var(--bg-two);
+    height: 100vh;
+
+}
+.section-two {
+    flex-basis: 60%;
+    background-color: var(--bg-one);
+    height: 100vh;
+}
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+    
+    .section-one {
+        display: none;
+    }
+    .section-two {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 768px) {
+}
+ @media only screen and (max-width: 480px) {
+ }
