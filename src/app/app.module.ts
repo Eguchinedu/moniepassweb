@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HomeModule } from './home/home.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, NavMenuComponent],
@@ -17,6 +18,7 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatTooltipModule,
     ToastrModule.forRoot(),
     HomeModule,
     AppRoutingModule,

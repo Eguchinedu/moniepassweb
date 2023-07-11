@@ -9,7 +9,7 @@
           aria-controls="offcanvasNavbar"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon" matTooltip="Menu"></span>
         </button>
     </div>
         <a class="navbar-brand" href="#">
@@ -21,9 +21,9 @@
         >
     
     <div class="nav-icons">
-      <i class="bi bi-bell"></i>
-      <i class="bi bi-person"></i>
-      <i (click)="signOut()" class="bi bi-box-arrow-right"></i>
+      <i class="bi bi-bell" matTooltip="Notifications"></i>
+      <i class="bi bi-person" matTooltip="Profile"></i>
+      <i (click)="signOut()" class="bi bi-box-arrow-right" matTooltip="Logout"></i>
     </div>
 
     <div
