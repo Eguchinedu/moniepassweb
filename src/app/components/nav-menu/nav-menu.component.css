@@ -1,0 +1,54 @@
+.container-fluid {
+    padding: 0 30px;
+}
+.navbar-tog {
+    flex-basis: 10%;
+}
+.navbar-brand {
+    flex:1;
+    display: flex;
+    margin: 0 30px;
+}
+.nav-icon {
+    flex-basis: 40%;
+    width: 100%;
+    display: flex;
+}
+.nav-log{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.section-header > p {
+    margin: 0;
+    color: var(--main);
+    line-height: 20px;
+    font-size: 14px;
+}
+.section-header > hr {
+    margin: 2px 0;
+    height: 1px;
+    background-color: var(--main);
+    width: 100%;
+}
+
+.bi {
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 10px;
+}
+.nav-link {
+    color: rgba(117, 132, 148, 1);
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.nav-link.active {
+    color: rgba(0, 29, 109, 1);
+}

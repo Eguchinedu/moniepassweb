@@ -51,7 +51,7 @@ export class LoginFormComponent {
           this.auth.storeToken(result.token);
           console.log(result);
           this.toastr.success('Logged in successfully', 'Success!');
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
         } else if (result.errorReason === 'Email has not been confirmed') {
           this.toastr.error(`${result.errorReason}, Check email for code`, 'Error!');
           this.router.navigate(['sign-up/confirm-email']);

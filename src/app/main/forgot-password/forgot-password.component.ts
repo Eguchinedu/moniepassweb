@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ForgotPasswordComponent {
   postError = false;
   postErrorMessage = '';
-  email!: string | null;
 
   forgotPassForm: FormGroup;
 
@@ -40,6 +39,7 @@ export class ForgotPasswordComponent {
   onSubmit() {
     if (this.forgotPassForm.valid) {
       const user = this.forgotPassForm.getRawValue();
+      console.log(user);
       this.auth
         .forgotPass(this.forgotPassForm.getRawValue())
         .subscribe((result) => {

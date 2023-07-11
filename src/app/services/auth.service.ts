@@ -19,7 +19,6 @@ export class AuthService {
   baseUrl = 'https://api.moniepass.com/api/v1/';
 
   login(data: ILogin): Observable<any> {
-    console.log('geting data from login service', data);
     return this.http.post(this.baseUrl + 'auth/login', data);
   }
   signUp(data: any): Observable<any> {
@@ -29,10 +28,13 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'auth/confirm-email', data);
   }
   forgotPass(data: any): Observable<any> {
-    return this.http.post(this.baseUrl + 'auth/send-code', data);
+    return this.http.post(
+      `https://api.moniepass.com/api/v1/auth/send-code?email=${data.email}`,
+      data
+    );
   }
   confirmPass(data: any): Observable<any> {
-    return this.http.post(this.baseUrl + 'auth/change-password', data);
+    return this.http.post(this.baseUrl + 'auth/reset-password', data);
   }
   storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
@@ -44,7 +46,7 @@ export class AuthService {
   setEmail(email: string) {
     return localStorage.setItem('email', email);
   }
-  getEmail(){
+  getEmail() {
     return localStorage.getItem('email');
   }
   isLoggedIn() {
