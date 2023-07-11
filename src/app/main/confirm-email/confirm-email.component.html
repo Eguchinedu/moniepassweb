@@ -14,11 +14,8 @@
             <div class="error-field">
                 <div class="input-icon">
                     <i class="bi bi-envelope"></i>
-                    <!-- <div *ngIf="email === null"> -->
                         <input type="email" name="email" id="email" class="login-field" placeholder="Email Address" formControlName="email"  required 
                 />
-                    <!-- </div> -->
-                    
                 </div>
                     <span [class]="confirmForm.controls['email'].dirty && confirmForm.hasError('required', 'email') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
             </div>
@@ -34,11 +31,6 @@
                     </div>
                 
         </div>
-        <div class="match-error">
-            <p *ngIf="confirmForm.hasError('email', 'email')" class="alert alert-danger">Please type in a valid email</p>
-            <p *ngIf="confirmForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short</p>
-        </div>
-    
         <div class="login-button">
             <button class="log-btn" [disabled]="!confirmForm.valid" >Confirm</button>
         </div>

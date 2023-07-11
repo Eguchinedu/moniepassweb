@@ -28,6 +28,12 @@ export class AuthService {
   confirmEmail(data: any): Observable<any> {
     return this.http.post(this.baseUrl + 'auth/confirm-email', data);
   }
+  forgotPass(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'auth/send-code', data);
+  }
+  confirmPass(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'auth/change-password', data);
+  }
   storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
   }
