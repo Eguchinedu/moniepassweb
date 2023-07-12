@@ -1,1 +1,239 @@
-<p>profile works!</p>
+<div class="profile-header">
+  <div class="profile-title">
+    <div class="profile-heading">
+      <h2 style="font-weight: 500">Your Profile Details</h2>
+    </div>
+    <div class="profile-edit">
+      <div class="profile-avatar" style="height: 100px; width: 100px">
+        <img
+          src="https://www.w3schools.com/howto/img_avatar.png"
+          alt="Avatar"
+          width="100%"
+          class="avatar"
+        />
+      </div>
+      <div class="profile-edit-buttons">
+        <a href="#" class="btn btn-primary">Upload picture</a>
+        <a href="#" class="btn btn-primary">Edit Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="profile-body">
+    <div class="tab-header">
+        <p class="tab-button" [ngClass]="status1 ? 'active' : ''"(click)="setActive1()">Bank Account Details</p>
+        <p class="tab-button" [ngClass]="status2 ? 'active' : ''" (click)="setActive2()">Change Password</p>
+        <p class="tab-button" [ngClass]="status3 ? 'active' : ''" (click)="setActive3()">About Us</p>
+    </div>
+    <ng-container *ngIf="tab1===true" class="tab-1">
+        <div class="bank-acct-container">
+          <div class="bank-acct-form">
+            <form action="" (ngSubmit)="onSubmitBankForm()" [formGroup]="bankForm">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    class="login-field"
+                    formControlName="username"
+                    required
+                  />
+                  <span
+                    [class]="
+                      bankForm.controls['username'].dirty &&
+                      bankForm.hasError('required', 'username')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="bankCode">Bank Account</label>
+                <div class="password-span">
+                  <div class="error-field">
+                    <select
+                      name="bankCode"
+                      id="bankCode"
+                      formControlName="bankCode"
+                      class="login-field"
+                      required
+                    >
+                      <option [value]="null">Select Bank</option>
+                      <option value="734">Access Bank</option>
+                      <option value="744">GT Bank</option>
+                      <option value="755">Sterling Bank</option>
+                      <option value="786">Opay</option>
+                    </select>
+                    <span
+                      [class]="
+                        bankForm.controls['bankCode'].dirty &&
+                        bankForm.hasError('required', 'banks')
+                          ? 'error-show'
+                          : 'error-span'
+                      "
+                      ><i class="bi bi-x-circle"></i
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="accountNumber">Account Number</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="accountNumber"
+                    id="accountNumber"
+                    class="login-field"
+                    placeholder="Enter your Account Number"
+                    formControlName="accountNumber"
+                    required
+                  />
+                  <span
+                    [class]="
+                      bankForm.controls['accountNumber'].dirty &&
+                      bankForm.hasError('required', 'accountNumber')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="login-button">
+                <button class="log-btn" [disabled]="!bankForm.valid">
+                  Add Bank
+                </button>
+              </div>
+            </form>
+          </div>
+        </div></ng-container>
+
+        <!-- change password form -->
+
+    <ng-container *ngIf="tab2===true">
+        <div class="change-pass-container">
+        <div class="change-pass-form">
+<form action="" (ngSubmit)="onSubmitChangePassForm()" [formGroup]="changePassForm">
+      <div class="form-group">
+        <div class="error-field">
+          <div class="input-icon">
+            <i class="bi bi-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="login-field"
+              placeholder="Email Address"
+              formControlName="email"
+              required
+            />
+          </div>
+          <span
+            [class]="
+              changePassForm.controls['email'].dirty &&
+              changePassForm.hasError('required', 'email')
+                ? 'error-show'
+                : 'error-span'
+            "
+            ><i class="bi bi-x-circle"></i
+          ></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="password-span">
+          <div class="error-field">
+            <div class="input-icon">
+              <i class="bi bi-lock"></i>
+              <input
+                [type]="changeType ? 'password' : 'text'"
+                name="password"
+                id="password"
+                formControlName="password"
+                placeholder="New Password"
+                class="login-field"
+                required
+              />
+            </div>
+            <span class="icon-span" (click)="viewPass()"
+              ><i [class]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+            ></span>
+            <span
+              [class]="
+                changePassForm.controls['password'].dirty &&
+                changePassForm.hasError('required', 'password')
+                  ? 'error-show'
+                  : 'error-span'
+              "
+              ><i class="bi bi-x-circle"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="password-span">
+          <div class="error-field">
+            <div class="input-icon">
+              <i class="bi bi-lock"></i>
+              <input
+                [type]="changeType2 ? 'password' : 'text'"
+                id="newPassword"
+                placeholder="New Password"
+                formControlName="newPassword"
+                class="login-field"
+                required
+              />
+            </div>
+            <span class="icon-span" (click)="viewPass2()"
+              ><i [class]="visible2 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+            ></span>
+            <span
+              [class]="
+                changePassForm.controls['newPassword'].dirty &&
+                changePassForm.hasError('required', 'newPassword')
+                  ? 'error-show'
+                  : 'error-span'
+              "
+              ><i class="bi bi-x-circle"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="match-error">
+        <!-- <p
+          *ngIf="changePassForm.errors?.['passwordmatcherror']"
+          class="alert alert-danger"
+        >
+          Passwords do not match!!
+        </p> -->
+        <p
+          *ngIf="changePassForm.hasError('minlength', 'password')"
+          class="alert alert-danger"
+        >
+          Password is too short. min-length of 8!
+        </p>
+        <p
+          *ngIf="changePassForm.hasError('minlength', 'newPassword')"
+          class="alert alert-danger"
+        >
+          New Password is too short. min-length of 8!
+        </p>
+      </div>
+      <div class="login-button">
+        <button class="log-btn" [disabled]="!changePassForm.valid">
+          Change Password
+        </button>
+      </div>
+    </form>
+        </div>
+    </div>
+        </ng-container>
+    <ng-container *ngIf="tab3===true">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit explicabo alias vitae asperiores sequi libero consequatur eius et quas officia, maiores reiciendis eos illum perspiciatis error quidem laboriosam aliquid magni aliquam consequuntur, minus voluptas quisquam cupiditate iste! Inventore aut accusamus doloremque molestiae ab quaerat recusandae numquam est repudiandae, voluptate, cupiditate at facilis accusantium iusto repellendus cum adipisci architecto non veritatis ullam alias earum odit nesciunt maiores. Quas deserunt quia molestias odit a, iure provident nesciunt sint minus libero ea in ipsum unde hic? Possimus optio rerum in. Facilis labore aut, saepe illum amet sed voluptatem assumenda provident quia harum doloremque!
+    </ng-container>
+  </div>
+</div>

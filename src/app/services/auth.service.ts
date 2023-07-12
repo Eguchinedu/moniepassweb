@@ -33,8 +33,25 @@ export class AuthService {
       data
     );
   }
+  changePass(data: string): Observable<any> {
+    return this.http.post(
+      this.baseUrl + `auth/change-password`, data
+    );
+  }
   confirmPass(data: any): Observable<any> {
     return this.http.post(this.baseUrl + 'auth/reset-password', data);
+  }
+  getInvoice(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `invoice/username/${data}`);
+  }
+  getOrders(data: any): Observable<any> {
+return this.http.get(this.baseUrl + `order/username/${data}`);
+  }
+  addBank(data: any): Observable<any> {
+    return this.http.post(
+      this.baseUrl + 'client/add-bank-account-details',
+      data
+    );
   }
   storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);

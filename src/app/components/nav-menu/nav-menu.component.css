@@ -60,6 +60,13 @@
 .nav-link.active {
     color: rgba(0, 29, 109, 1);
 }
+.nav-link-2 {
+    text-decoration: none;
+    color: black;
+}
+.nav-link-2.active{
+    color: rgba(0, 29, 109, 1);
+}
 .bi-bell:hover, .bi-person:hover, .bi-box-arrow-right:hover {
     border-radius: 50%;
     box-shadow: 0px 8px 26.850000381469727px 0px rgba(0, 29, 109, 0.35);

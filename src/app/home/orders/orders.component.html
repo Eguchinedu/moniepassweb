@@ -1,1 +1,26 @@
-<p>orders works!</p>
+<div class="container">
+    <div class="invoice-container">
+        <div class="invoice-heading">
+            <h3 style="font-weight: 500;">
+                Order(s)
+            </h3>
+        </div>
+        <div class="invoice-body">
+            <ng-container *ngIf="orders.length === 0">
+        <div class="invoice-body-container">
+            <div class="invoice-content">
+                <div class="invoice-img">
+                    <img src="../../../assets/images/46.png" width="100px" height="100px" alt="invoice">
+                </div>
+                <div class="invoice-text" style="width: 300px;">
+                    <p style="font-weight: 900;">No Orders yet</p>
+                    <p>You currently do not have any orders yet. Kindly make a payment in the Home page.</p>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="orders.length > 0">hello</ng-container>
+        </div>
+    </div>
+</div>
+

@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../guard/auth.guard';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -20,6 +21,7 @@ import { AuthGuard } from '../guard/auth.guard';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatTabsModule,
     FormsModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },

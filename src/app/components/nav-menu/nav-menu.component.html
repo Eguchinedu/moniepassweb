@@ -12,7 +12,7 @@
           <span class="navbar-toggler-icon" matTooltip="Menu"></span>
         </button>
     </div>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" [routerLink]="['/home']">
           <div class="section-header">
             <p class="sect-one">LOGO</p>
             <hr />
@@ -21,8 +21,26 @@
         >
     
     <div class="nav-icons">
-      <i class="bi bi-bell" matTooltip="Notifications"></i>
-      <i class="bi bi-person" matTooltip="Profile"></i>
+      <a
+              class="nav-link-2"
+              aria-current="page"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/Notifications']"
+              matTooltip="Notifications"
+            >
+            <i class="bi bi-bell" ></i>
+            </a>
+      <a
+              class="nav-link-2"
+              aria-current="page"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="['/home/profile']"
+              matTooltip="Profile"
+            >
+            <i class="bi bi-person" ></i>
+            </a>
       <i (click)="signOut()" class="bi bi-box-arrow-right" matTooltip="Logout"></i>
     </div>
 
