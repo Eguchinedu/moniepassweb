@@ -1,0 +1,152 @@
+<div mat-dialog-content>
+  <div class="invoice-header">
+    <div class="invoice-title">
+        Generate Invoice
+    </div>
+    <div class="invoice-close">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        (click)="closeDialog()"
+        fontIcon="close"
+      ></mat-icon>
+    </div>
+  </div>
+  <div class="invoice-body">
+    <form action="" (ngSubmit)="onSubmit()" [formGroup]="invoiceForm">
+              <div class="form-group">
+                <label for="merhchantUsername">Merchant Username</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="merhchantUsername"
+                    id="merhchantUsername"
+                    class="login-field"
+                    formControlName="merchantUsername"
+                    required
+                  />
+                  <span
+                    [class]="
+                      invoiceForm.controls['merchantUsername'].dirty &&
+                      invoiceForm.hasError('required', 'merchantUsername')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="customerUsername">Customer Username</label>
+                <div class="error-field">
+                  <input
+                  #User
+                  (change)="checkCustomer(User.value)"
+                    type="text"
+                    name="customerUsername"
+                    id="customerUsername"
+                    class="login-field"
+                    formControlName="customerUsername"
+                    required
+                  />
+                  <span
+                    [class]="
+                      invoiceForm.controls['customerUsername'].dirty &&
+                      invoiceForm.hasError('required', 'customerUsername')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+                <div class="customer-name">
+                    {{customerUser?.firstName}} {{customerUser?.lastName}}
+                </div>
+            </div>
+              <div class="form-group">
+                <label for="customerPhone">Customer Phone No</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="customerPhone"
+                    id="customerPhone"
+                    class="login-field"
+                    formControlName="customerPhone"
+                    required
+                  />
+                  <span
+                    [class]="
+                      invoiceForm.controls['customerPhone'].dirty &&
+                      invoiceForm.hasError('required', 'customerPhone')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="customerAddress">Customer Address</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="customerAddress"
+                    id="customerAddress"
+                    class="login-field"
+                    formControlName="customerAddress"
+                    required
+                  />
+                  <span
+                    [class]="
+                      invoiceForm.controls['customerAddress'].dirty &&
+                      invoiceForm.hasError('required', 'customerAddress')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <div class="error-field">
+                  <input
+                    type="number"
+                    name="amount"
+                    id="amount"
+                    class="login-field"
+                    formControlName="amount"
+                    required
+                  />
+                  <span
+                    [class]="
+                      invoiceForm.controls['amount'].dirty &&
+                      invoiceForm.hasError('required', 'amount')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="narration">Account Number</label>
+                <div class="error-field">
+                  <textarea 
+                    type="text"
+                    name="narration"
+                    id="narration"
+                    class="login-field"
+                    placeholder="Enter Narration"
+                    formControlName="narration"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="login-button">
+                <button class="log-btn" [disabled]="!invoiceForm.valid">
+                  Generate
+                </button>
+              </div>
+            </form>
+  </div>
+</div>

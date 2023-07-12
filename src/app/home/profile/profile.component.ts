@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,7 +29,7 @@ export class ProfileComponent implements OnInit {
   changeType: boolean = true;
   visible2: boolean = true;
   changeType2: boolean = true;
-
+  bankList!: any[];
   bankForm: FormGroup;
   changePassForm: FormGroup;
 
@@ -53,7 +60,7 @@ export class ProfileComponent implements OnInit {
           Validators.minLength(8),
         ]),
         // confirmPassword: new FormControl(null, [Validators.required]),
-      },
+      }
       // {
       //   validators: this.MustMatch,
       // }
@@ -62,6 +69,12 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     // this.tab1=true;
     // this.status1=true;
+    this.getBanks();
+  }
+  getBanks() {
+    this.auth.getBankList().subscribe((res) => {
+      this.bankList = res;
+    });
   }
   viewPass() {
     this.visible = !this.visible;
@@ -142,7 +155,8 @@ export class ProfileComponent implements OnInit {
   onSubmitChangePassForm() {
     if (this.changePassForm.valid) {
       console.log(this.changePassForm.getRawValue());
-      this.auth.changePass(this.changePassForm.getRawValue())
+      this.auth
+        .changePass(this.changePassForm.getRawValue())
         .subscribe((result) => {
           if (result.success == true) {
             this.toastr.success('Password Changed successfully', 'Success!');

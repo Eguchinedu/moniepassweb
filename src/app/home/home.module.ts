@@ -8,6 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../guard/auth.guard';
 import { MatTabsModule } from '@angular/material/tabs';
+import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
+import { GenerateOrdersComponent } from './generate-orders/generate-orders.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -17,15 +21,23 @@ import { MatTabsModule } from '@angular/material/tabs';
     InvoicesComponent,
     OrdersComponent,
     ProfileComponent,
+    GenerateInvoiceComponent,
+    GenerateOrdersComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatTabsModule,
+    MatDialogModule,
+    MatIconModule,
     FormsModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-      { path: 'home/profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      {
+        path: 'home/profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard],
+      },
       {
         path: 'orders',
         component: OrdersComponent,
@@ -38,5 +50,6 @@ import { MatTabsModule } from '@angular/material/tabs';
       },
     ]),
   ],
+  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent],
 })
 export class HomeModule {}

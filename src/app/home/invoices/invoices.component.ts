@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-invoices',
   templateUrl: './invoices.component.html',
@@ -9,7 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class InvoicesComponent implements OnInit {
   invoices!: any;
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {
     this.auth.getEmail();
   }
   ngOnInit(): void {
@@ -21,5 +25,4 @@ export class InvoicesComponent implements OnInit {
       console.log(this.invoices);
     });
   }
-
 }

@@ -34,9 +34,7 @@ export class AuthService {
     );
   }
   changePass(data: string): Observable<any> {
-    return this.http.post(
-      this.baseUrl + `auth/change-password`, data
-    );
+    return this.http.post(this.baseUrl + `auth/change-password`, data);
   }
   confirmPass(data: any): Observable<any> {
     return this.http.post(this.baseUrl + 'auth/reset-password', data);
@@ -45,13 +43,19 @@ export class AuthService {
     return this.http.get(this.baseUrl + `invoice/username/${data}`);
   }
   getOrders(data: any): Observable<any> {
-return this.http.get(this.baseUrl + `order/username/${data}`);
+    return this.http.get(this.baseUrl + `order/username/${data}`);
+  }
+  getClient(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `client/username/${data}`);
   }
   addBank(data: any): Observable<any> {
     return this.http.post(
       this.baseUrl + 'client/add-bank-account-details',
       data
     );
+  }
+  getBankList(): Observable<any> {
+    return this.http.get(this.baseUrl + 'paystack/banks');
   }
   storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);

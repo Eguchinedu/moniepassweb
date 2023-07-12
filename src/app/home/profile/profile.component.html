@@ -63,11 +63,13 @@
                       class="login-field"
                       required
                     >
-                      <option [value]="null">Select Bank</option>
+                    <option [value]="null">Select Bank</option>
+                    <option *ngFor="let bank of bankList" [value]="bank.code">{{bank.name}}</option>
+                      <!-- <option [value]="null">Select Bank</option>
                       <option value="734">Access Bank</option>
                       <option value="744">GT Bank</option>
                       <option value="755">Sterling Bank</option>
-                      <option value="786">Opay</option>
+                      <option value="786">Opay</option> -->
                     </select>
                     <span
                       [class]="
