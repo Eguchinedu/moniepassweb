@@ -18,6 +18,7 @@ export class AuthService {
 
   baseUrl = 'https://api.moniepass.com/api/v1/';
 
+  // AUTHENTICATION SECTION
   login(data: ILogin): Observable<any> {
     return this.http.post(this.baseUrl + 'auth/login', data);
   }
@@ -39,6 +40,11 @@ export class AuthService {
   confirmPass(data: any): Observable<any> {
     return this.http.post(this.baseUrl + 'auth/reset-password', data);
   }
+
+  // USER SECTION
+  genInvoice(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'invoice', data);
+  }
   getInvoice(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `invoice/username/${data}`);
   }
@@ -57,6 +63,12 @@ export class AuthService {
   getBankList(): Observable<any> {
     return this.http.get(this.baseUrl + 'paystack/banks');
   }
+  getServiceFee(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `invoice/get-service-fee/${data}`);
+  }
+
+  // TOKEN SECTION
+
   storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);
   }

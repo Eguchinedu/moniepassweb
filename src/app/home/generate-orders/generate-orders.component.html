@@ -13,6 +13,167 @@
     </div>
   </div>
   <div class="order-body">
-    
+    <form action="" (ngSubmit)="onSubmit()" [formGroup]="orderForm">
+              <div class="form-group">
+                <label for="invoiceId">Invoice Id</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="invoiceId"
+                    id="invoiceId"
+                    class="login-field"
+                    formControlName="invoiceId"
+                    required
+                  />
+                  <span
+                    [class]="
+                      orderForm.controls['invoiceId'].dirty &&
+                      orderForm.hasError('required', 'invoiceId')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="merchantUsername">Merchant Username</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="merchantUsername"
+                    id="merchantUsername"
+                    class="login-field"
+                    formControlName="merchantUsername"
+                    required
+                  />
+                  <span
+                    [class]="
+                      orderForm.controls['merchantUsername'].dirty &&
+                      orderForm.hasError('required', 'merchantUsername')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="customerUsername">Customer Username</label>
+                <div class="error-field">
+                  <input
+                  #User
+                  (change)="checkCustomer(User.value)"
+                    type="text"
+                    name="customerUsername"
+                    id="customerUsername"
+                    class="login-field"
+                    formControlName="customerUsername"
+                    required
+                  />
+                  <span
+                    [class]="
+                      orderForm.controls['customerUsername'].dirty &&
+                      orderForm.hasError('required', 'customerUsername')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+                <div class="customer-name">
+                    {{customerUser?.firstName}} {{customerUser?.lastName}}
+                </div>
+            </div>
+              <div class="form-group">
+                <label for="customerPhone">Customer Phone No</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="customerPhone"
+                    id="customerPhone"
+                    class="login-field"
+                    formControlName="customerPhone"
+                    required
+                  />
+                  <span
+                    [class]="
+                      orderForm.controls['customerPhone'].dirty &&
+                      orderForm.hasError('required', 'customerPhone')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="customerAddress">Customer Address</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="customerAddress"
+                    id="customerAddress"
+                    class="login-field"
+                    formControlName="customerAddress"
+                    required
+                  />
+                  <span
+                    [class]="
+                      orderForm.controls['customerAddress'].dirty &&
+                      orderForm.hasError('required', 'customerAddress')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <div class="error-field">
+                  <input
+                  #Amount
+                  (change)="calcServiceFee(Amount.value)"
+                    type="number"
+                    name="amount"
+                    id="amount"
+                    class="login-field"
+                    formControlName="amount"
+                    required
+                  />
+                  <span
+                    [class]="
+                      orderForm.controls['amount'].dirty &&
+                      orderForm.hasError('required', 'amount')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+                <div class="customer-name" *ngIf="serviceFee">
+                    Service Fee: N{{serviceFee}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="narration">Account Number</label>
+                <div class="error-field">
+                  <textarea 
+                    type="text"
+                    name="narration"
+                    id="narration"
+                    class="login-field"
+                    placeholder="Enter Narration"
+                    formControlName="narration"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="login-button">
+                <button class="log-btn" [disabled]="!orderForm.valid">
+                  Generate
+                </button>
+              </div>
+            </form>
   </div>
 </div>

@@ -29,7 +29,8 @@
     <ng-container *ngIf="tab1===true" class="tab-1">
         <div class="bank-acct-container">
           <div class="bank-acct-form">
-            <form action="" (ngSubmit)="onSubmitBankForm()" [formGroup]="bankForm">
+            <ng-container *ngIf="(user?.bankName && user?.accountName) === null">
+              <form action="" (ngSubmit)="onSubmitBankForm()" [formGroup]="bankForm">
               <div class="form-group">
                 <label for="username">Username</label>
                 <div class="error-field">
@@ -106,12 +107,33 @@
                   ></span>
                 </div>
               </div>
+              <div class="match-error">
+        <p
+          *ngIf="bankForm.hasError('minlength', 'accountNumber')"
+          class="alert alert-danger"
+        >
+          Account Number must be 10 digits
+        </p>
+      </div>
               <div class="login-button">
                 <button class="log-btn" [disabled]="!bankForm.valid">
                   Add Bank
                 </button>
               </div>
-            </form>
+            </form></ng-container>
+            <ng-container *ngIf="(user?.bankName && user?.accountNumber) != null">
+              <div class="bank-section">
+                <div class="bank-name">
+                  <h3>Bank Name</h3>
+                  <p>{{user?.bankName}}</p>
+                </div>
+                <div class="bank-account">
+                  <h3>Account Number</h3>
+                  <p>{{user?.accountNumber}}</p>
+                </div>
+              </div>
+            </ng-container>
+            
           </div>
         </div></ng-container>
 

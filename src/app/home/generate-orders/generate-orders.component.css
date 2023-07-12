@@ -6,3 +6,160 @@
 mat-icon {
     cursor: pointer;
 }
+.customer-name {
+    text-align: right;
+}
+
+.order-body {
+    padding: 30px;
+}
+.reset-section{
+    padding: 20px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.login-field {
+    padding: 10px 14px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 2px solid #ccc;
+
+}
+.login-field:disabled {
+  cursor: no-drop;
+}
+.error-field {
+    display: flex;
+    align-items: center;
+}
+.error-span {
+    position: relative;
+    padding: 0 5px;
+    display: none;
+}
+.error-show {
+    position: relative;
+    padding: 0 5px;
+    display: block;
+}
+.bi-x-circle {
+    position: absolute;
+    top: -10px;
+    color: red;
+}
+input:focus, textarea:focus {
+    outline: none;
+}
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+.password-span {
+    position: relative;
+}
+.icon-span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    right: 20px;
+    top: 20px;
+}
+.bi-eye-slash, .bi-eye{
+    color: var(--main);
+}
+.form-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0 0 0;
+}
+.check {
+    display: flex;
+    align-items: center;
+}
+.check > input {
+    margin: 0 8px;
+}
+.forgotpwd {
+    font-size: 14px;
+    font-weight: 600;
+
+}
+.login-button {
+    margin: 20px 0;
+}
+.log-btn {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 8px;
+    color: #ffffff;
+    background-color: #4E5BA6;
+    transition: .3s ease-in-out;
+    box-shadow: 0px 8px 26.850000381469727px 0px rgba(0, 29, 109, 0.35);
+}
+.log-btn:hover {
+    background-color: #626e88;
+}
+.log-btn:disabled {
+      background:  #fff;
+      border: 2px solid #D0D5DD;
+   color: #ccc;
+   cursor: no-drop;
+
+}
+.error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px ;
+}
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #d0d5dd;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.bi-envelope,
+.bi-lock,
+.bi-person {
+  color: var(--main);
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.sign-up-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.flex-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+    .tab-header {
+    width: 100%;
+}
+}
+@media only screen and (max-width: 768px) {
+}
+ @media only screen and (max-width: 480px) {
+ } 

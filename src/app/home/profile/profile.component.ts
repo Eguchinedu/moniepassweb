@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   bankList!: any[];
   bankForm: FormGroup;
   changePassForm: FormGroup;
+  user!: any;
 
   constructor(
     private toastr: ToastrService,
@@ -43,7 +44,7 @@ export class ProfileComponent implements OnInit {
         Validators.required,
       ]),
       bankCode: new FormControl(null, [Validators.required]),
-      accountNumber: new FormControl(null, [Validators.required]),
+      accountNumber: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     });
     this.changePassForm = new FormGroup(
       {
@@ -70,11 +71,17 @@ export class ProfileComponent implements OnInit {
     // this.tab1=true;
     // this.status1=true;
     this.getBanks();
+    this.getUserDetails()
   }
   getBanks() {
     this.auth.getBankList().subscribe((res) => {
       this.bankList = res;
     });
+  }
+  getUserDetails(){
+    this.auth.getClient('eguchinedu18').subscribe((res)=>{
+      this.user=res;
+    })
   }
   viewPass() {
     this.visible = !this.visible;
@@ -137,17 +144,16 @@ export class ProfileComponent implements OnInit {
   onSubmitBankForm() {
     if (this.bankForm.valid) {
       console.log(this.bankForm.getRawValue());
-
-      // this.auth.addBank(this.bankForm.getRawValue())
-      //   .subscribe((result) => {
-      //     if (result.success == true) {
-      //       this.toastr.success('Bank added successfully', 'Success!');
-      // location.reload(); // refresh the page
-      // this.ngOnInit();
-      //     } else {
-      //       this.toastr.error(result.errorReason, 'Error!');
-      //     }
-      //   });
+      this.auth.addBank(this.bankForm.getRawValue())
+        .subscribe((result) => {
+          if (result.success == true) {
+            this.toastr.success('Bank added successfully', 'Success!');
+      location.reload(); // refresh the page
+      this.ngOnInit();
+          } else {
+            this.toastr.error(result.errorReason, 'Error!');
+          }
+        });
     } else {
       this.toastr.error('Select Bank Please', 'Error!');
     }

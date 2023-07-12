@@ -24,7 +24,19 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="invoices?.length > 0">hello</ng-container>
+    <ng-container *ngIf="invoices?.length > 0">
+        <div class="invoice-body">
+            <div class="invoice-item">
+                <div class="invoice-texts">
+                        <p>{{invoices?.createdDate}}</p>
+                        <p>{{invoices?.invoice.Id}}</p>
+                </div>
+                <div class="invoice-button-2">
+                    <button class="invoice-btn-2">View Invoice</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
   </mat-tab>
   <mat-tab label="Make Payment">
     <ng-container *ngIf="orders?.length === 0">

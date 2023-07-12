@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class GenerateInvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
   customerUser!: any;
-  customer!: true;
+  merchant!: any;
 
   constructor(
     private dialog: MatDialogRef<GenerateInvoiceComponent>,
@@ -33,7 +33,9 @@ export class GenerateInvoiceComponent implements OnInit {
       narration: new FormControl(null),
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserDetails();
+  }
 
   closeDialog(): void {
     this.dialog.close();
@@ -51,24 +53,34 @@ export class GenerateInvoiceComponent implements OnInit {
       }
     });
   }
+  getUserDetails() {
+    this.auth.getClient('eguchinedu18').subscribe((res) => {
+      this.merchant = res;
+      console.log(this.merchant);
+      if(this.merchant.accountNumber === null && this.merchant.bankCode === null){
+        this.toastr.error('Please add your Bank Details in the profile section before generating payment', 'Error!');
+        this.closeDialog();
+        // this.router.navigate(['/home/profile']);
+      }
+    });
+  }
+
   onSubmit() {
     if (this.invoiceForm.valid) {
-      console.log(this.invoiceForm.getRawValue());
-      this.closeDialog();
-      this.toastr.success('Invoice Generated Successfully');
-
-      // this.auth.addBank(this.invoiceForm.getRawValue())
-      //   .subscribe((result) => {
-      //     if (result.success == true) {
-      //       this.toastr.success('Bank added successfully', 'Success!');
-      // location.reload(); // refresh the page
-      // this.ngOnInit();
-      //     } else {
-      //       this.toastr.error(result.errorReason, 'Error!');
-      //     }
-      //   });
+      this.auth
+        .genInvoice(this.invoiceForm.getRawValue())
+        .subscribe((result) => {
+          if (result.success == true) {
+            this.toastr.success('Invoice Generated Successfully', 'Success!');
+            location.reload(); // refresh the page
+            this.ngOnInit();
+            this.closeDialog();
+          } else {
+            this.toastr.error(result.errorReason, 'Error!');
+          }
+        });
     } else {
-      this.toastr.error('Select Bank Please', 'Error!');
+      this.toastr.error('Please Fill In Details', 'Error!');
     }
   }
 }
