@@ -7,7 +7,20 @@
       <h3 style="font-weight: 500">Orders</h3>
     </div>
     <div class="invoice-body">
-      
+      <div class="merchant-section">
+        <div class="merchant-details">
+          <p>
+            <span class="bold"> Vendor: </span>
+            {{ currentOrder?.merchantName }}
+          </p>
+        </div>
+        <div class="invoice-id">
+          <p>
+            <span class="bold"> Invoice Id: </span>
+            {{ currentOrder?.orderId }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

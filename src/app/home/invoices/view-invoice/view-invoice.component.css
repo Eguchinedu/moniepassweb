@@ -12,9 +12,9 @@ p {
 }
 .invoice-body {
     border: 1px solid #ccc;
+    border-radius: 5px;
     margin: 20px auto;
     box-shadow: 0px 8px 26.850000381469727px 0px #ccc;
-    border-radius: 5px;
     padding: 30px;
 }
 .merchant-section {

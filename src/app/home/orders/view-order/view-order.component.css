@@ -28,3 +28,12 @@ p {
 .bi {
     margin: 0 5px;
 }
+.merchant-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}

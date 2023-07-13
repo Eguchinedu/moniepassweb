@@ -15,7 +15,7 @@ export class LoginFormComponent {
   postError = false;
   postErrorMessage = '';
   user!: any;
-
+  isLoading: boolean = false;
   loginForm: FormGroup;
 
   constructor(
@@ -25,9 +25,12 @@ export class LoginFormComponent {
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       isMobileDevice: new FormControl(false),
-      mobileDeviceId: new FormControl(""),
+      mobileDeviceId: new FormControl(''),
     });
   }
   ngOnInit() {}
@@ -49,26 +52,29 @@ export class LoginFormComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       if (this.loginForm.valid) {
-      this.auth.login(this.loginForm.getRawValue()).subscribe((result) => {
-        this.user = this.auth.getUserInfo(result.token);
-        if (result.success == true) {
-          this.auth.storeToken(result.token);
-          this.auth.setEmail(this.user.email);
-          this.auth.setUserName(this.user.username);
-          this.auth.setFirstName(this.user.firstname);
-          console.log(result);
-          this.toastr.success('Logged in successfully', 'Success!');
-          this.router.navigate(['/home']);
-        } else if (result.errorReason === 'Email has not been confirmed') {
-          this.toastr.error(`${result.errorReason}, Check email for code`, 'Error!');
-          this.router.navigate(['sign-up/confirm-email']);
-        } else {
-          this.toastr.error(result.errorReason, 'Error!');
-        }
-      });
-    } else {
-      this.toastr.error('Invalid credentials', 'Error!');
+        this.isLoading = true;
+        this.auth.login(this.loginForm.getRawValue()).subscribe((result) => {
+          this.user = this.auth.getUserInfo(result.token);
+          if (result.success == true) {
+            this.auth.storeToken(result.token);
+            this.auth.setEmail(this.user.email);
+            this.auth.setUserName(this.user.username);
+            this.auth.setFirstName(this.user.firstname);
+            this.toastr.success('Logged in successfully', 'Success!');
+            this.router.navigate(['/home']);
+          } else if (result.errorReason === 'Email has not been confirmed') {
+            this.toastr.error(
+              `${result.errorReason}, Check email for code`,
+              'Error!'
+            );
+            this.router.navigate(['sign-up/confirm-email']);
+          } else {
+            this.toastr.error(result.errorReason, 'Error!');
+          }
+        });
+      } else {
+        this.toastr.error('Invalid credentials', 'Error!');
+      }
     }
   }
-}
 }

@@ -47,7 +47,7 @@
         </div>
         </div>
         <div class="login-button">
-            <button class="log-btn" [disabled]="!loginForm.valid" >Sign In</button>
+            <button class="log-btn" [disabled]="!loginForm.valid || isLoading" >Sign In</button>
         </div>
     </form>
     <div class="sign-up-link"><p>
