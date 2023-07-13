@@ -24,7 +24,7 @@
             <div class="invoice-list" *ngFor="let order of orders">
               <div class="invoice-item">
                 <div class="invoice-texts">
-                  <p>Date Created: {{ order?.createdDate | date : "short" }}</p>
+                  <p>Date Created: {{ order?.lastModifiedDate | date : "short" }}</p>
                   <p>Order ID: {{ order?.orderId }}</p>
                 </div>
                 <div class="invoice-button-2">

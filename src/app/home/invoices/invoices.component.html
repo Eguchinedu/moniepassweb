@@ -23,7 +23,7 @@
         <div class="invoice-body-2" *ngFor="let invoice of invoices">
             <div class="invoice-item">
                 <div class="invoice-texts">
-                        <p>Date Created: {{invoice?.createdDate | date: 'short'}}</p>
+                        <p>Date Created: {{invoice?.lastModifiedDate | date: 'short'}}</p>
                         <p>Invoice ID: {{invoice?.invoiceId}}</p>
                         <p *ngIf="invoice?.status === 0" class="unpaid">
           <span class="bold">Status: </span>
