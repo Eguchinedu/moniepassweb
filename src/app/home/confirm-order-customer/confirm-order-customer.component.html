@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+    <mat-icon id="close-btn" (click)="closeDialog()">close</mat-icon>
+</div>
+<div mat-dialog-content>
+  Please Select an option that applies to this order
+</div>
+<div mat-dialog-actions class="confirm-button">
+    <div class="happy">
+        <button mat-button [mat-dialog-close]="0" class="confirm-happy" cdkFocusInitial><i class="bi bi-emoji-smile-fill"></i></button>
+        <p style="width: 50px; margin: 10px 0;">Received and satisfied</p>
+    </div>
+    <div class="angry">
+        <button mat-button [mat-dialog-close]="1" class="confirm-angry"><i class="bi bi-emoji-angry-fill"></i></button>
+        <p style="width: 50px; margin: 10px 0;">Recieved and Unsatisfied</p>
+    </div>
+    <div class="sad">
+        <button mat-button [mat-dialog-close]="2" class="confirm-sad"><i class="bi bi-emoji-frown-fill"></i></button>
+        <p style="width: 50px; margin: 10px 0;">Not Received at all</p>
+    </div>
+</div>

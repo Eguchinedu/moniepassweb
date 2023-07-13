@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConfirmOrderCustomerComponent } from '../../confirm-order-customer/confirm-order-customer.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-order',
@@ -23,7 +25,7 @@ export class ViewOrderComponent {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.src = '/assets/images/success.PNG';
+    this.src = '../../../../assets/images/success.PNG';
   }
   ngOnInit(): void {
     this.user = this.auth.getUserName();
@@ -33,10 +35,58 @@ export class ViewOrderComponent {
       this.currentOrder = order;
       console.log(this.currentOrder);
     });
+    
   }
   goback() {
     window.history.back();
   }
 
-  
+  productDelivered(id: any, status: any) {
+    const confirm = {
+      orderId: id,
+      status: 2,
+    };
+    this.auth.confirmDeliveryMerchant(confirm).subscribe((result) => {
+      console.log(result);
+      if (result.success === true) {
+        this.toastr.success('Product Delivered Successfully');
+        location.reload(); // refresh the page
+        this.ngOnInit();
+      } else {
+        this.toastr.error(result.errorReason);
+      }
+    });
+  }
+  productReceived(id: any, status: any) {
+    const confirm = {
+      orderId: id,
+      status: 8,
+    };
+    return this.dialog
+      .open(ConfirmOrderCustomerComponent, {
+        width: '450px',
+        hasBackdrop: true,
+        disableClose: true,
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result === 0) {
+    this.auth.confirmDeliveryMerchant(confirm).subscribe((result) => {
+      console.log(result);
+      if (result.success === true) {
+        Swal.fire({
+           title: 'Submitted',
+           html: 'Thanks for Ordering!',
+           imageUrl: this.src,
+           imageWidth: 150,
+           imageHeight: 150,
+           confirmButtonText: `Done`,
+         })
+        location.reload(); // refresh the page
+        this.ngOnInit();
+      } else {
+        this.toastr.error(result.errorReason);
+      }
+    })}});
+  }
 }

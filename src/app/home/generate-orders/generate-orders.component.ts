@@ -24,10 +24,7 @@ export class GenerateOrdersComponent implements OnInit {
     private router: Router
   ) {
     this.orderForm = new FormGroup({
-      invoiceId: new FormControl({
-        value: '' ,
-        disabled: true,
-      }),
+      invoiceId: new FormControl(''),
       merchantUsername: new FormControl(
         { value: this.auth.getUserName(), disabled: true },
         [Validators.required]
@@ -37,6 +34,7 @@ export class GenerateOrdersComponent implements OnInit {
       customerAddress: new FormControl(null, [Validators.required]),
       amount: new FormControl(null, [Validators.required]),
       narration: new FormControl(null),
+      isMobileDevice: new FormControl(false)
     });
   }
   ngOnInit(): void {}

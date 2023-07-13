@@ -9,8 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class OrdersComponent implements OnInit {
   orders!: any;
+  userName!: any;
   constructor(private auth: AuthService, private router: Router) {
     this.auth.getEmail();
+    this.userName = this.auth.getUserName();
   }
   ngOnInit(): void {
     this.loadOrders(this.auth.getUserName());

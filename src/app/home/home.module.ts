@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.component';
 import { ViewOrderComponent } from './orders/view-order/view-order.component';
+import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-order-customer.component';
 
 
 
@@ -29,6 +30,7 @@ import { ViewOrderComponent } from './orders/view-order/view-order.component';
     ViewInvoiceComponent,
     WithdrawInvoiceComponent,
     ViewOrderComponent,
+    ConfirmOrderCustomerComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +68,6 @@ import { ViewOrderComponent } from './orders/view-order/view-order.component';
       },
     ]),
   ],
-  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent, WithdrawInvoiceComponent],
+  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent, WithdrawInvoiceComponent, ConfirmOrderCustomerComponent],
 })
 export class HomeModule {}

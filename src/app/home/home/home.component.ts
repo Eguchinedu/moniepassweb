@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   orders!: any;
   user!: any;
   email!: any;
+  userName!: any;
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
   ) {
     console.log(this.auth.getEmail());
     this.user = this.auth.getFirstName();
+    this.userName = this.auth.getUserName();
   }
   ngOnInit(): void {
     this.loadInvoices(this.auth.getUserName());

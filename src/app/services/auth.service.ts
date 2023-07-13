@@ -71,6 +71,9 @@ export class AuthService {
   getOrderById(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `order/orderid/${data}`);
   }
+  confirmDeliveryMerchant(data: any): Observable<any> {
+return this.http.put(this.baseUrl +  'order', data)
+  }
 
   //BANKS AND PAYMENT----------------
   addBank(data: any): Observable<any> {

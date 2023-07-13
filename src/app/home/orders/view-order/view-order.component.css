@@ -37,3 +37,58 @@ p {
     border-radius: 5px;
     padding: 10px;
 }
+.order-details-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+.order-progress-section{
+     margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+.order-progress {
+    padding: 10px;
+}
+.progress-box {
+    display: flex;
+    width: 25%;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid var(--text-two);
+    padding: 8px;
+    border-radius: 10px;
+}
+.bi-check-circle-fill {
+    margin: 0 10px;
+    font-size: 18px;
+}
+.invoice-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 ;
+}
+.invoice-btn {
+    border: #ccc;
+    padding: 15px 25px;
+   color: var(--bg-one);
+   border-radius: 5px;
+    background-color: var(--text-two);
+    transition: .3s ease-in-out;
+    box-shadow: 0px 8px 26.850000381469727px 0px rgba(0, 29, 109, 0.35);
+}
+.invoice-btn:hover {
+    background-color: var(--text-one);
+}
+.invoice-btn:disabled{
+    background-color: #ccc;
+    color: var(--bg-one);
+    cursor: not-allowed;
+}

@@ -28,8 +28,21 @@
                   <p>Order ID: {{ order?.orderId }}</p>
                 </div>
                 <div class="invoice-button-2">
-                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 1">Pending
-                  <i class="bi bi-arrow-right-circle"></i></button>
+                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 1" style="color: red;">Pending
+                    <i class="bi bi-arrow-right-circle"></i>
+                  </button>
+                  <ng-container *ngIf="order?.merchantUsername === userName">
+                    <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">Not Confirmed
+                    <i class="bi bi-arrow-right-circle"></i></button>
+                  </ng-container>
+                  <ng-container *ngIf="order?.customerUsername=== userName">
+                    <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">Confirm Order
+                    <i class="bi bi-arrow-right-circle"></i></button>
+                  </ng-container>
+                  
+                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 8" style="background-color: green; color: white;">Order Confirmed
+                    <i class="bi bi-arrow-right-circle"></i>
+                  </button>
                 </div>
               </div>
             </div>

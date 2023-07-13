@@ -15,28 +15,6 @@
   <div class="order-body">
     <form action="" (ngSubmit)="onSubmit()" [formGroup]="orderForm">
               <div class="form-group">
-                <label for="invoiceId">Invoice Id</label>
-                <div class="error-field">
-                  <input
-                    type="text"
-                    name="invoiceId"
-                    id="invoiceId"
-                    class="login-field"
-                    formControlName="invoiceId"
-                    required
-                  />
-                  <span
-                    [class]="
-                      orderForm.controls['invoiceId'].dirty &&
-                      orderForm.hasError('required', 'invoiceId')
-                        ? 'error-show'
-                        : 'error-span'
-                    "
-                    ><i class="bi bi-x-circle"></i
-                  ></span>
-                </div>
-              </div>
-              <div class="form-group">
                 <label for="merchantUsername">Merchant Username</label>
                 <div class="error-field">
                   <input

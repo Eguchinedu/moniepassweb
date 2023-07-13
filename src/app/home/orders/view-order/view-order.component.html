@@ -1,8 +1,9 @@
 <div class="container">
   <div class="invoice-container">
     <button class="go-back" (click)="goback()">
-        <i class="bi bi-caret-left-fill"></i>
-        Go Back</button>
+      <i class="bi bi-caret-left-fill"></i>
+      Go Back
+    </button>
     <div class="invoice-heading">
       <h3 style="font-weight: 500">Orders</h3>
     </div>
@@ -21,7 +22,70 @@
           </p>
         </div>
       </div>
+      <div class="order-details-section">
+        <div class="order-details">
+          <p>
+            <span class="bold"> Client: </span>
+            {{ currentOrder?.customerName }}
+          </p>
+          <p>
+            <span class="bold"> Address: </span>
+            {{ currentOrder?.customerAddress }}
+          </p>
+          <p>
+            <span class="bold"> Phone: </span>
+            {{ currentOrder?.customerPhone }}
+          </p>
+          <p>
+            <span class="bold"> Amount Paid: </span>
+            {{ currentOrder?.totalAmount | currency : "NGN" }}
+          </p>
+          <p>
+            <span class="bold"> Narration: </span>
+            {{ currentOrder?.narration }}
+          </p>
+        </div>
+      </div>
+      <div class="order-progress-section">
+        <div class="order-progress" *ngFor="let stages of currentOrder?.stages">
+          <div class="progress-box">
+            <div class="progress-box-icon">
+              <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="progress-box-text">
+              <p class="progress-box-text-title">{{ stages?.stage }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="currentOrder?.merchantUsername === user">
+        <div class="invoice-button">
+          <button
+            class="invoice-btn"
+            (click)="
+              productDelivered(currentOrder?.orderId, currentOrder?.status)
+            "
+            [disabled]="
+              currentOrder?.status === 2 || currentOrder?.status === 8
+            "
+          >
+            Product Delivered
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="currentOrder?.customerUsername === user">
+        <div class="invoice-button">
+          <button
+            class="invoice-btn"
+            (click)="
+              productReceived(currentOrder?.orderId, currentOrder?.status)
+            "
+            [disabled]="currentOrder?.status !== 2"
+          >
+            Confirm Delivery
+          </button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
-
