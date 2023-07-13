@@ -34,7 +34,7 @@
             </div>
           </div>
         </ng-container>
-        <ng-container *ngIf="invoices?.length > 0">
+        <ng-container *ngIf="invoices?.length > 0 ">
           <div class="invoice-body" >
             <div class="invoice-list" *ngFor="let invoice of invoices">
               <div class="invoice-item">
@@ -98,7 +98,8 @@
             </div>
           </div>
         </ng-container>
-        <ng-container *ngIf="orders?.length > 0"><div class="invoice-body" >
+        <ng-container *ngIf="orders?.length > 0">
+          <div class="invoice-body" >
             <div class="invoice-list" *ngFor="let order of orders">
               <div class="invoice-item">
                 <div class="invoice-texts">
@@ -106,9 +107,9 @@
                   <p>Order ID: {{ order?.orderId }}</p>
                 </div>
                 <div class="invoice-button-2">
-                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)">View Orders
+                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 1">Pending
+                    <i class="bi bi-arrow-right-circle"></i>
                   </button>
-                  <p *ngIf="order?.status === 1">Pending</p>
                 </div>
               </div>
             </div>
@@ -117,7 +118,8 @@
             <button class="invoice-btn" (click)="createOrders()">
               Make a payment
             </button>
-          </div></ng-container>
+          </div>
+        </ng-container>
       </mat-tab>
     </mat-tab-group>
   </div>

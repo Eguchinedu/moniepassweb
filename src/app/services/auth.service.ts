@@ -42,6 +42,11 @@ export class AuthService {
   }
 
   // USER SECTION
+  getClient(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `client/username/${data}`);
+  }
+
+  //INVOICES----------
   genInvoice(data: any): Observable<any> {
     return this.http.post(this.baseUrl + 'invoice', data);
   }
@@ -55,15 +60,19 @@ export class AuthService {
     return this.http.put(this.baseUrl + `invoice`, data);
   }
 
+  ///
+  //ORDERS--------------
   genOrder(data: any): Observable<any> {
     return this.http.post(this.baseUrl + 'invoice/make-payment', data);
   }
   getOrders(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `order/username/${data}`);
   }
-  getClient(data: any): Observable<any> {
-    return this.http.get(this.baseUrl + `client/username/${data}`);
+  getOrderById(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `order/orderid/${data}`);
   }
+
+  //BANKS AND PAYMENT----------------
   addBank(data: any): Observable<any> {
     return this.http.post(
       this.baseUrl + 'client/add-bank-account-details',
@@ -76,8 +85,11 @@ export class AuthService {
   getServiceFee(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `invoice/get-service-fee/${data}`);
   }
+  verifyPayment(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + 'paystack/verify-payment', data);
+  }
 
-  // TOKEN SECTION
+  // TOKEN SECTION AND STORAGE----------
 
   storeToken(tokenValue: string) {
     localStorage.setItem('token', tokenValue);

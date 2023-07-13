@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.component';
+import { ViewOrderComponent } from './orders/view-order/view-order.component';
 
 
 
@@ -27,6 +28,7 @@ import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.co
     GenerateOrdersComponent,
     ViewInvoiceComponent,
     WithdrawInvoiceComponent,
+    ViewOrderComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,11 @@ import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.co
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'orders/:id',
+        component: ViewOrderComponent,
         canActivate: [AuthGuard],
       },
       {

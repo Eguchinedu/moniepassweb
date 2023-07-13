@@ -19,7 +19,22 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="orders?.length > 0">hello</ng-container>
+    <ng-container *ngIf="orders?.length > 0">
+        <div class="invoice-body-2" >
+            <div class="invoice-list" *ngFor="let order of orders">
+              <div class="invoice-item">
+                <div class="invoice-texts">
+                  <p>Date Created: {{ order?.createdDate | date : "short" }}</p>
+                  <p>Order ID: {{ order?.orderId }}</p>
+                </div>
+                <div class="invoice-button-2">
+                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 1">Pending
+                  <i class="bi bi-arrow-right-circle"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </ng-container>
         </div>
     </div>
 </div>

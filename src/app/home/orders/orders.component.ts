@@ -8,13 +8,12 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./orders.component.css'],
 })
 export class OrdersComponent implements OnInit {
-  
   orders!: any;
   constructor(private auth: AuthService, private router: Router) {
     this.auth.getEmail();
   }
   ngOnInit(): void {
-    this.loadOrders(this.auth.getEmail());
+    this.loadOrders(this.auth.getUserName());
   }
 
   loadOrders(data: any): void {
@@ -22,5 +21,8 @@ export class OrdersComponent implements OnInit {
       this.orders = order;
       console.log(this.orders);
     });
+  }
+  viewOrder(id: any): void {
+    this.router.navigate(['/orders', id]);
   }
 }

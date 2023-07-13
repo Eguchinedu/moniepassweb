@@ -61,3 +61,14 @@ p {
     color: var(--bg-one);
     cursor: not-allowed;
 }
+.go-back {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    padding: 10px 10px;
+    border-radius: 8px;
+    color: var(--text-two);
+    font-weight: 600;
+}
+.bi {
+    margin: 0 5px;
+}

@@ -22,7 +22,7 @@ export class ViewInvoiceComponent {
     private auth: AuthService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private router : Router
+    private router: Router
   ) {
     this.src = '/assets/images/success.PNG';
   }
@@ -35,11 +35,14 @@ export class ViewInvoiceComponent {
       console.log(this.currentInvoice);
     });
   }
+  goback() {
+    window.history.back();
+  }
   withdrawInvoice(id: any, status: any) {
-            const withdrawn = {
-              invoiceId: id,
-              status: 1,
-            }
+    const withdrawn = {
+      invoiceId: id,
+      status: 1,
+    };
     return this.dialog
       .open(WithdrawInvoiceComponent, {
         width: '350px',
@@ -50,38 +53,48 @@ export class ViewInvoiceComponent {
       .subscribe((result) => {
         if (result === true) {
           this.auth.withdrawInvoice(withdrawn).subscribe((result) => {
-            if(result.success === true) {
+            if (result.success === true) {
               this.toastr.success('Invoice Withdrawn Successfully');
               location.reload(); // refresh the page
               this.ngOnInit();
-            }else {
+            } else {
               this.toastr.error('Invoice Already Withdrawn');
             }
           });
         }
       });
   }
-  makePayment(){
-     this.auth.genOrder(this.currentInvoice)
-      .subscribe((result) => {
-        if (result.success == true) {
-          
-          window.location.href = result.data.authorizationUrl;
-      // location.reload(); // refresh the page
-      // this.ngOnInit();
-      // Swal.fire({
-      //    title: 'Payment Successful',
-      //    html: 'Transaction id: #133211',
-      //    imageUrl: this.src,
-      //    imageWidth: 150,
-      //    imageHeight: 150,
-      //    confirmButtonText: `  OK`,
-      //  })
-       // this.router.navigate(['/home']);
-          } else{
-            this.toastr.error(result.errorReason, 'Error!');
-          }
-        });
-    } 
+  makePayment() {
+    this.auth.genOrder(this.currentInvoice).subscribe((result) => {
+      if (result.success == true) {
+        window.location.href = result.data.authorizationUrl;
+
+        // Swal.fire({
+        //    title: 'Payment Successful',
+        //    html: 'Transaction id: #133211',
+        //    imageUrl: this.src,
+        //    imageWidth: 150,
+        //    imageHeight: 150,
+        //    confirmButtonText: `  OK`,
+        //  })
+        //  this.router.navigate(['/home']);
+      } else {
+        this.toastr.error(result.errorReason, 'Error!');
+      }
+    });
   }
+
+  // verifyPayment(){
+  //   this.auth.verifyPayment(this.currentInvoice)
+  //   .subscribe((result) => {
+  //     if (result.status == true) {
+  //       this.toastr.success(result.message,'Payment Successful');
+  //       location.reload(); // refresh the page
+  //       this.ngOnInit();
+  //     } else{
+  //       this.toastr.error(result.message, 'Error!');
+  //     }
+  //   });
+  // }
+}
     
