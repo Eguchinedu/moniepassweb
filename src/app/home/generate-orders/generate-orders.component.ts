@@ -78,8 +78,9 @@ export class GenerateOrdersComponent implements OnInit {
         if (result.success == true) {
           this.toastr.success('Order generated Successfully', 'Success!');
           this.closeDialog();
-      location.reload(); // refresh the page
-      this.ngOnInit();
+          window.location.href = result.data.authorizationUrl;
+      // location.reload(); // refresh the page
+      // this.ngOnInit();
           } else {
             this.toastr.error(result.errorReason, 'Error!');
           }

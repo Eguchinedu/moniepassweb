@@ -4,6 +4,24 @@
       <h3 style="font-weight: 500">Invoice</h3>
     </div>
     <div class="invoice-body">
+      <div class="status">
+        <p *ngIf="currentInvoice?.status === 0" class="unpaid">
+          <span class="bold">Invoice status: </span>
+          Pending
+        </p>
+        <p *ngIf="currentInvoice?.status === 1" class="paid">
+          <span class="bold">Invoice status: </span>
+          Withdrawn</p>
+        <p *ngIf="currentInvoice?.status === 2" class="paid">
+          <span class="bold">Invoice status: </span>
+          Processing Payment</p>
+        <p *ngIf="currentInvoice?.status === 3" class="paid">
+          <span class="bold">Invoice status: </span>
+          Payment Verified</p>
+        <p *ngIf="currentInvoice?.status === 4" class="paid">
+          <span class="bold">Invoice status: </span>
+          Payment Failed</p>
+      </div>
       <div class="client-heading">
         <div class="client-title">
           <p>Merchant Details</p>
@@ -76,12 +94,12 @@
       </div>
       <ng-container *ngIf="currentInvoice?.merchantUsername === user">
           <div class="invoice-button">
-            <button class="invoice-btn" (click)="withdrawInvoice(currentInvoice?.invoiceId)">Withdraw Invoice</button>
+            <button class="invoice-btn" (click)="withdrawInvoice(currentInvoice?.invoiceId, currentInvoice?.status)" [disabled]="currentInvoice?.status !== 0">Withdraw Invoice</button>
           </div>
       </ng-container>
       <ng-container *ngIf="currentInvoice?.customerUsername === user">
           <div class="invoice-button">
-            <button class="invoice-btn" (click)="makePayment()">Make Payment</button>
+            <button class="invoice-btn" (click)="makePayment()" [disabled]="currentInvoice?.status !== 0">Make Payment</button>
           </div>
       </ng-container>
     </div>

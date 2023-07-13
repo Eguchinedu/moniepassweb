@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { WithdrawInvoiceComponent } from '../../withdraw-invoice/withdraw-invoice.component';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-invoice',
@@ -36,7 +35,11 @@ export class ViewInvoiceComponent {
       console.log(this.currentInvoice);
     });
   }
-  withdrawInvoice(id: string) {
+  withdrawInvoice(id: any, status: any) {
+            const withdrawn = {
+              invoiceId: id,
+              status: 1,
+            }
     return this.dialog
       .open(WithdrawInvoiceComponent, {
         width: '350px',
@@ -45,25 +48,40 @@ export class ViewInvoiceComponent {
       })
       .afterClosed()
       .subscribe((result) => {
-        console.log(result);
         if (result === true) {
-          this.auth.deleteInvoice(id).subscribe((result) => {
-            this.toastr.success('Invoice Withdrawn Successfully');
-            this.router.navigate(['/invoices']);
+          this.auth.withdrawInvoice(withdrawn).subscribe((result) => {
+            if(result.success === true) {
+              this.toastr.success('Invoice Withdrawn Successfully');
+              location.reload(); // refresh the page
+              this.ngOnInit();
+            }else {
+              this.toastr.error('Invoice Already Withdrawn');
+            }
           });
         }
       });
   }
   makePayment(){
-     Swal.fire({
-        title: 'Payment Successful',
-        html: 'Transaction id: #133211',
-        imageUrl: this.src,
-        imageWidth: 150,
-        imageHeight: 150,
-        confirmButtonText: `  OK`,
-      })
-        this.router.navigate(['/home']);
-      
+     this.auth.genOrder(this.currentInvoice)
+      .subscribe((result) => {
+        if (result.success == true) {
+          
+          window.location.href = result.data.authorizationUrl;
+      // location.reload(); // refresh the page
+      // this.ngOnInit();
+      // Swal.fire({
+      //    title: 'Payment Successful',
+      //    html: 'Transaction id: #133211',
+      //    imageUrl: this.src,
+      //    imageWidth: 150,
+      //    imageHeight: 150,
+      //    confirmButtonText: `  OK`,
+      //  })
+       // this.router.navigate(['/home']);
+          } else{
+            this.toastr.error(result.errorReason, 'Error!');
+          }
+        });
+    } 
   }
-}
+    

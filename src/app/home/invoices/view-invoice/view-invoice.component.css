@@ -56,3 +56,8 @@ p {
 .invoice-btn:hover {
     background-color: var(--text-one);
 }
+.invoice-btn:disabled{
+    background-color: #ccc;
+    color: var(--bg-one);
+    cursor: not-allowed;
+}

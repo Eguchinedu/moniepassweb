@@ -41,6 +41,22 @@
                 <div class="invoice-texts">
                   <p>Date Created: {{ invoice?.createdDate | date : "short" }}</p>
                   <p>Invoice ID: {{ invoice?.invoiceId }}</p>
+                  <p *ngIf="invoice?.status === 0" class="unpaid">
+          <span class="bold">Status: </span>
+          Pending
+        </p>
+        <p *ngIf="invoice?.status === 1" class="paid">
+          <span class="bold">Status: </span>
+          Withdrawn</p>
+        <p *ngIf="invoice?.status === 2" class="paid">
+          <span class="bold">Status: </span>
+          Processing Payment</p>
+        <p *ngIf="invoice?.status === 3" class="paid">
+          <span class="bold">Status: </span>
+          Payment Verified</p>
+        <p *ngIf="invoice?.status === 4" class="paid">
+          <span class="bold">Status: </span>
+          Payment Failed</p>
                 </div>
                 <div class="invoice-button-2">
                   <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
@@ -87,7 +103,7 @@
               <div class="invoice-item">
                 <div class="invoice-texts">
                   <p>Date Created: {{ order?.createdDate | date : "short" }}</p>
-                  <p>Invoice ID: {{ order?.orderId }}</p>
+                  <p>Order ID: {{ order?.orderId }}</p>
                 </div>
                 <div class="invoice-button-2">
                   <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)">View Orders
