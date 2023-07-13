@@ -48,6 +48,10 @@ export class AuthService {
   getInvoice(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `invoice/username/${data}`);
   }
+  getInvoiceById(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `invoice/invoiceid/${data}`);
+  }
+
   getOrders(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `order/username/${data}`);
   }
@@ -76,11 +80,26 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+  getUserInfo(token: string) {
+    return JSON.parse(atob(token.split('.')[1]));
+  }
   setEmail(email: string) {
     return localStorage.setItem('email', email);
   }
   getEmail() {
     return localStorage.getItem('email');
+  }
+  setUserName(username: string) {
+    return localStorage.setItem('username', username);
+  }
+  getUserName() {
+    return localStorage.getItem('username');
+  }
+  setFirstName(firstname: string) {
+    return localStorage.setItem('firstname', firstname);
+  }
+  getFirstName() {
+    return localStorage.getItem('firstname');
   }
   isLoggedIn() {
     return this.getToken() ? true : false;

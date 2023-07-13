@@ -14,16 +14,19 @@ import { GenerateOrdersComponent } from '../generate-orders/generate-orders.comp
 export class HomeComponent implements OnInit {
   invoices!: any;
   orders!: any;
+  user!: any;
+  email!: any;
   constructor(
     private auth: AuthService,
     private router: Router,
     private dialog: MatDialog
   ) {
-    this.auth.getEmail();
+    console.log(this.auth.getEmail());
+    this.user = this.auth.getFirstName();
   }
   ngOnInit(): void {
-    this.loadInvoices('eguchinedu18@gmail.com');
-    this.loadOrders('eguchinedu18@gmail.com');
+    this.loadInvoices(this.auth.getUserName());
+    this.loadOrders(this.auth.getUserName());
   }
   loadInvoices(data: any): void {
     this.auth.getInvoice(data).subscribe((invoice) => {
@@ -38,15 +41,18 @@ export class HomeComponent implements OnInit {
     });
   }
   createInvoice(): void {
-     this.dialog.open(GenerateInvoiceComponent, {
-       width: '500px',
-       hasBackdrop: true,
-     });
+    this.dialog.open(GenerateInvoiceComponent, {
+      width: '500px',
+      hasBackdrop: true,
+    });
   }
   createOrders(): void {
-     this.dialog.open(GenerateOrdersComponent, {
-       width: '500px',
-       hasBackdrop: true,
-     });
+    this.dialog.open(GenerateOrdersComponent, {
+      width: '500px',
+      hasBackdrop: true,
+    });
+  }
+  viewInvoice(id: any): void {
+    this.router.navigate(['/invoices', id]);
   }
 }

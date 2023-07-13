@@ -23,7 +23,7 @@ export class GenerateInvoiceComponent implements OnInit {
   ) {
     this.invoiceForm = new FormGroup({
       merchantUsername: new FormControl(
-        { value: 'eguchinedu18', disabled: true },
+        { value: this.auth.getUserName(), disabled: true },
         [Validators.required]
       ),
       customerUsername: new FormControl(null, [Validators.required]),
@@ -54,10 +54,10 @@ export class GenerateInvoiceComponent implements OnInit {
     });
   }
   getUserDetails() {
-    this.auth.getClient('eguchinedu18').subscribe((res) => {
+    this.auth.getClient(this.auth.getUserName()).subscribe((res) => {
       this.merchant = res;
       console.log(this.merchant);
-      if(this.merchant.accountNumber === null && this.merchant.bankCode === null){
+      if(this.merchant.accountNumber === null && this.merchant.bankName === null){
         this.toastr.error('Please add your Bank Details in the profile section before generating payment', 'Error!');
         this.closeDialog();
         // this.router.navigate(['/home/profile']);

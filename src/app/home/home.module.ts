@@ -12,6 +12,7 @@ import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.co
 import { GenerateOrdersComponent } from './generate-orders/generate-orders.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
 
 
 
@@ -23,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     ProfileComponent,
     GenerateInvoiceComponent,
     GenerateOrdersComponent,
+    ViewInvoiceComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,11 @@ import { MatIconModule } from '@angular/material/icon';
       {
         path: 'invoices',
         component: InvoicesComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'invoices/:id',
+        component: ViewInvoiceComponent,
         canActivate: [AuthGuard],
       },
     ]),

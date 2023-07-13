@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="invoice-container">
+    <div class="invoice-heading">
+      <h3 style="font-weight: 500">Invoice</h3>
+    </div>
+    <div class="invoice-body">
+      <div class="client-heading">
+        <div class="client-title">
+          <p>Merchant Details</p>
+        </div>
+      </div>
+      <div class="merchant-section">
+        <div class="merchant-details">
+          <p>
+            <span class="bold"> Username: </span>
+            {{ currentInvoice?.merchantUsername }}
+          </p>
+          <p>
+            <span class="bold"> Name: </span>
+            {{ currentInvoice?.merchantName }}
+          </p>
+        </div>
+        <div class="invoice-id">
+          <p>
+            <span class="bold"> Invoice Id: </span>
+            {{ currentInvoice?.invoiceId }}
+          </p>
+        </div>
+      </div>
+      <div class="client-heading">
+        <div class="client-title">
+          <p>Client Details</p>
+        </div>
+        <div class="date">
+          <p>Date: {{ currentInvoice?.createdDate | date : "mediumDate" }}</p>
+        </div>
+      </div>
+      <div class="customer-section">
+        <div class="customer-details">
+          <p>
+            <span class="bold"> Name: </span>
+            {{ currentInvoice?.customerName }}
+          </p>
+          <p>
+            <span class="bold"> Username: </span>
+            {{ currentInvoice?.customerUsername }}
+          </p>
+          <p>
+            <span class="bold"> Address: </span>
+            {{ currentInvoice?.customerAddress }}
+          </p>
+          <p>
+            <span class="bold"> Phone: </span>
+            {{ currentInvoice?.customerPhone }}
+          </p>
+          <p>
+            <span class="bold"> Narration: </span>
+            {{ currentInvoice?.narration }}
+          </p>
+        </div>
+        <div class="customer-id"></div>
+      </div>
+      <div class="amount-section">
+        <p>
+          <span class="bold"> Amount: </span>
+          {{ currentInvoice?.amount }}
+        </p>
+        <p>
+          <span class="bold"> Charges: </span>
+          {{ currentInvoice?.serviceFee }}
+        </p>
+        <p>
+          <span class="bold"> Total: </span>
+          {{ currentInvoice?.totalAmount }}
+        </p>
+      </div>
+      <ng-container *ngIf="currentInvoice?.merchantUsername === user">
+          <div class="invoice-button">
+            <button class="invoice-btn">Withdraw Invoice</button>
+          </div>
+      </ng-container>
+      <ng-container *ngIf="currentInvoice?.customerUsername === user">
+          <div class="invoice-button">
+            <button class="invoice-btn">Make Payment</button>
+          </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

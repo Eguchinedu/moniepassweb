@@ -17,12 +17,15 @@ export class InvoicesComponent implements OnInit {
     this.auth.getEmail();
   }
   ngOnInit(): void {
-    this.loadInvoices('eguchinedu18@gmail.com');
+    this.loadInvoices(this.auth.getUserName());
   }
   loadInvoices(data: any): void {
     this.auth.getInvoice(data).subscribe((invoice) => {
       this.invoices = invoice;
       console.log(this.invoices);
     });
+  }
+  viewInvoice(id: any): void {
+    this.router.navigate(['/invoices', id]);
   }
 }

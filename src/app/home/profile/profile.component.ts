@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {
     this.bankForm = new FormGroup({
-      username: new FormControl({ value: 'eguchinedu18', disabled: true }, [
+      username: new FormControl({ value: this.auth.getUserName(), disabled: true }, [
         Validators.required,
       ]),
       bankCode: new FormControl(null, [Validators.required]),
@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
     this.changePassForm = new FormGroup(
       {
         email: new FormControl(
-          { value: 'eguchinedu18@gmail.com', disabled: true },
+          { value: this.auth.getEmail(), disabled: true },
           [Validators.required, Validators.email]
         ),
         password: new FormControl(null, [
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
     });
   }
   getUserDetails(){
-    this.auth.getClient('eguchinedu18').subscribe((res)=>{
+    this.auth.getClient(this.auth.getUserName()).subscribe((res)=>{
       this.user=res;
     })
   }

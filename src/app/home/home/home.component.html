@@ -1,64 +1,87 @@
 <div class="home-header">
-        <div class="home-title">
-            <h1 style="font-weight: 500;">Hey, User!👋</h1>
-            <p>Welcome to moniepass</p>
-        </div>
-    </div>
-<div class="container">
-    <div class="home-body">
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-  <mat-tab label="Generate Invoice">
-    <ng-container *ngIf="invoices?.length === 0">
-        <div class="invoice-container">
-            <div class="invoice-content">
-                <div class="invoice-img">
-                    <img src="../../../assets/images/46.png" width="100px" height="100px" alt="invoice">
-                </div>
-                <div class="invoice-text" style="width: 300px;">
-                    <p style="font-weight: 900;">No Invoices yet</p>
-                    <p>You currently do not have any invoices yet. Click the button below to generate.</p>
-                </div>
-                <div class="invoice-button">
-                    <button class="invoice-btn" (click)="createInvoice()">Generate Invoice</button>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="invoices?.length > 0">
-        <div class="invoice-body">
-            <div class="invoice-item">
-                <div class="invoice-texts">
-                        <p>{{invoices?.createdDate}}</p>
-                        <p>{{invoices?.invoice.Id}}</p>
-                </div>
-                <div class="invoice-button-2">
-                    <button class="invoice-btn-2">View Invoice</button>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-  </mat-tab>
-  <mat-tab label="Make Payment">
-    <ng-container *ngIf="orders?.length === 0">
-        <div class="invoice-container">
-            <div class="invoice-content">
-                <div class="invoice-img">
-                    <img src="../../../assets/images/46.png" width="100px" height="100px" alt="invoice">
-                </div>
-                <div class="invoice-text" style="width: 300px;">
-                    <p style="font-weight: 900;">No Orders yet</p>
-                    <p>You currently do not have any orders yet. Click the button below to make a payment.</p>
-                </div>
-                <div class="invoice-button">
-                    <button class="invoice-btn" (click)="createOrders()">Make a payment</button>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="orders?.length > 0">hello</ng-container>
-  </mat-tab>
-</mat-tab-group>
-
-    </div>
+  <div class="home-title">
+    <h1 style="font-weight: 500">Hey, {{ user | uppercase }}!👋</h1>
+    <p>Welcome to moniepass</p>
+  </div>
 </div>
-
+<div class="container">
+  <div class="home-body">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="Generate Invoice">
+        <ng-container *ngIf="invoices?.length === 0">
+          <div class="invoice-container">
+            <div class="invoice-content">
+              <div class="invoice-img">
+                <img
+                  src="../../../assets/images/46.png"
+                  width="100px"
+                  height="100px"
+                  alt="invoice"
+                />
+              </div>
+              <div class="invoice-text" style="width: 300px">
+                <p style="font-weight: 900">No Invoices yet</p>
+                <p>
+                  You currently do not have any invoices yet. Click the button
+                  below to generate.
+                </p>
+              </div>
+              <div class="invoice-button">
+                <button class="invoice-btn" (click)="createInvoice()">
+                  Generate Invoice
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="invoices?.length > 0">
+          <div class="invoice-body" *ngFor="let invoice of invoices">
+            <div class="invoice-item">
+              <div class="invoice-texts">
+                <p>Date Created: {{ invoice?.createdDate | date : "short" }}</p>
+                <p>Invoice ID: {{ invoice?.invoiceId }}</p>
+              </div>
+              <div class="invoice-button-2">
+                <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
+              </div>
+            </div>
+          </div>
+          <div class="invoice-button">
+            <button class="invoice-btn" (click)="createInvoice()">
+              Generate Invoice
+            </button>
+          </div>
+        </ng-container>
+      </mat-tab>
+      <mat-tab label="Make Payment">
+        <ng-container *ngIf="orders?.length === 0">
+          <div class="invoice-container">
+            <div class="invoice-content">
+              <div class="invoice-img">
+                <img
+                  src="../../../assets/images/46.png"
+                  width="100px"
+                  height="100px"
+                  alt="invoice"
+                />
+              </div>
+              <div class="invoice-text" style="width: 300px">
+                <p style="font-weight: 900">No Orders yet</p>
+                <p>
+                  You currently do not have any orders yet. Click the button
+                  below to make a payment.
+                </p>
+              </div>
+              <div class="invoice-button">
+                <button class="invoice-btn" (click)="createOrders()">
+                  Make a payment
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="orders?.length > 0">hello</ng-container>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

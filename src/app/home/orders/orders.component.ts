@@ -14,7 +14,7 @@ export class OrdersComponent implements OnInit {
     this.auth.getEmail();
   }
   ngOnInit(): void {
-    this.loadOrders('eguchinedu18@gmail.com');
+    this.loadOrders(this.auth.getEmail());
   }
 
   loadOrders(data: any): void {

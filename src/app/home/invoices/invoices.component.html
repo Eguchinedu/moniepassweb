@@ -19,7 +19,19 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="invoices?.length > 0">hello</ng-container>
+    <ng-container *ngIf="invoices?.length > 0">
+        <div class="invoice-body-2" *ngFor="let invoice of invoices">
+            <div class="invoice-item">
+                <div class="invoice-texts">
+                        <p>Date Created: {{invoice?.createdDate | date: 'short'}}</p>
+                        <p>Invoice ID: {{invoice?.invoiceId}}</p>
+                </div>
+                <div class="invoice-button-2">
+                    <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
         </div>
     </div>
 </div>

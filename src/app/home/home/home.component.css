@@ -9,18 +9,18 @@
     text-align: center;
     color: var(--text-two);
 }
-.invoice-body {
-    padding: 30px;
-}
 .invoice-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     border: 2px solid #ccc;
-   border-radius: 10px;
+    border-radius: 10px;
     padding: 15px 20px;
     color: var(--text-two);
+}
+.invoice-body {
+    padding: 30px;
 }
 .invoice-btn-2{
     border: #ccc;
@@ -40,8 +40,11 @@
 .invoice-content {
     text-align: center;
 }
-.invoice-text {
+.invoice-texts {
     color: var(--text-two);
+}
+.invoice-texts > p {
+    font-weight: 900;
 }
 .invoice-btn {
     border: #ccc;
@@ -54,4 +57,9 @@
 }
 .invoice-btn:hover {
     background-color: var(--text-one);
+}
+.invoice-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

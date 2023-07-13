@@ -26,7 +26,7 @@ export class GenerateOrdersComponent implements OnInit {
     this.orderForm = new FormGroup({
       invoiceId: new FormControl(null, [Validators.required]),
       merchantUsername: new FormControl(
-        { value: 'eguchinedu18', disabled: true },
+        { value: this.auth.getUserName(), disabled: true },
         [Validators.required]
       ),
       customerUsername: new FormControl(null, [Validators.required]),
