@@ -7,15 +7,34 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './main/forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './main/confirm-password/confirm-password.component';
 import { ConfirmEmailComponent } from './main/confirm-email/confirm-email.component';
+import { LoginGuard } from './guard/login.guard';
 
-const routes: Routes = [  
-  {path: 'forgot-pwd/confirm-pwd', component: ConfirmPasswordComponent},
-  {path: 'forgot-pwd', component: ForgotPasswordComponent},
-  { path: 'sign-up/confirm-email', component: ConfirmEmailComponent},
-  {path: 'sign-up', component: SignUpComponent},
-  { path: 'login', component: LoginComponent},
+
+const routes: Routes = [
+  {
+    path: 'forgot-pwd/confirm-pwd',
+    component: ConfirmPasswordComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'forgot-pwd',
+    component: ForgotPasswordComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'sign-up/confirm-email',
+    component: ConfirmEmailComponent,
+    canActivate: [LoginGuard],
+  },
+  { path: 'sign-up', component: SignUpComponent, 
+  canActivate: [LoginGuard]
+ },
+  { path: 'login', component: LoginComponent , 
+  canActivate: [LoginGuard] 
+},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },];
+  { path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes), MainModule],

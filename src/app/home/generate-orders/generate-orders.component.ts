@@ -24,7 +24,10 @@ export class GenerateOrdersComponent implements OnInit {
     private router: Router
   ) {
     this.orderForm = new FormGroup({
-      invoiceId: new FormControl(null, [Validators.required]),
+      invoiceId: new FormControl({
+        value: '',
+        disabled: true,
+      }),
       merchantUsername: new FormControl(
         { value: this.auth.getUserName(), disabled: true },
         [Validators.required]
@@ -70,21 +73,19 @@ export class GenerateOrdersComponent implements OnInit {
   onSubmit() {
     if (this.orderForm.valid) {
       console.log(this.orderForm.getRawValue());
-      this.closeDialog();
-      this.toastr.success('Invoice Generated Successfully');
-
-      // this.auth.addBank(this.orderForm.getRawValue())
-      //   .subscribe((result) => {
-      //     if (result.success == true) {
-      //       this.toastr.success('Bank added successfully', 'Success!');
-      // location.reload(); // refresh the page
-      // this.ngOnInit();
-      //     } else {
-      //       this.toastr.error(result.errorReason, 'Error!');
-      //     }
-      //   });
+      this.auth.genOrder(this.orderForm.getRawValue())
+      .subscribe((result) => {
+        if (result.success == true) {
+          this.toastr.success('Order generated Successfully', 'Success!');
+          this.closeDialog();
+      location.reload(); // refresh the page
+      this.ngOnInit();
+          } else {
+            this.toastr.error(result.errorReason, 'Error!');
+          }
+        });
     } else {
-      this.toastr.error('Select Bank Please', 'Error!');
+      this.toastr.error('Please Fill in details', 'Error!');
     }
   }
 }

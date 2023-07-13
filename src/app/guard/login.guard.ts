@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -22,12 +22,11 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.auth.isLoggedIn()) {
-      
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      this.toastr.error('Please login first', 'Error!');
+      this.router.navigate(['/home']);
+      this.toastr.error('You are already logged in. please log out first', 'Error!');
       return false;
+    } else {
+      return true;
     }
   }
 }

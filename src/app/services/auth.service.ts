@@ -55,6 +55,9 @@ export class AuthService {
     return this.http.delete(this.baseUrl + `invoice/invoiceid/${data}`);
   }
 
+  genOrder(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'invoice/make-payment', data);
+  }
   getOrders(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `order/username/${data}`);
   }

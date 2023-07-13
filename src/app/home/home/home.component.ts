@@ -55,4 +55,7 @@ export class HomeComponent implements OnInit {
   viewInvoice(id: any): void {
     this.router.navigate(['/invoices', id]);
   }
+  viewOrder(id: any): void {
+    this.router.navigate(['/orders', id]);
+  }
 }
