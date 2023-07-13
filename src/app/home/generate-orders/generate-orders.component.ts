@@ -25,7 +25,7 @@ export class GenerateOrdersComponent implements OnInit {
   ) {
     this.orderForm = new FormGroup({
       invoiceId: new FormControl({
-        value: '',
+        value: '' ,
         disabled: true,
       }),
       merchantUsername: new FormControl(

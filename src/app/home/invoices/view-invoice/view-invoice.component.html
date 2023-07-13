@@ -81,7 +81,7 @@
       </ng-container>
       <ng-container *ngIf="currentInvoice?.customerUsername === user">
           <div class="invoice-button">
-            <button class="invoice-btn">Make Payment</button>
+            <button class="invoice-btn" (click)="makePayment()">Make Payment</button>
           </div>
       </ng-container>
     </div>

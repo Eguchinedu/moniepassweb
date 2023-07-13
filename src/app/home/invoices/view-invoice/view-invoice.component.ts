@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { WithdrawInvoiceComponent } from '../../withdraw-invoice/withdraw-invoice.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-invoice',
@@ -15,6 +16,7 @@ export class ViewInvoiceComponent {
   invoiceId: string = '';
   user!: any;
   errorMessage = '';
+  src!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +24,9 @@ export class ViewInvoiceComponent {
     private dialog: MatDialog,
     private toastr: ToastrService,
     private router : Router
-  ) {}
+  ) {
+    this.src = '/assets/images/success.PNG';
+  }
   ngOnInit(): void {
     this.user = this.auth.getUserName();
     let id = this.route.snapshot.params['id'];
@@ -49,5 +53,17 @@ export class ViewInvoiceComponent {
           });
         }
       });
+  }
+  makePayment(){
+     Swal.fire({
+        title: 'Payment Successful',
+        html: 'Transaction id: #133211',
+        imageUrl: this.src,
+        imageWidth: 150,
+        imageHeight: 150,
+        confirmButtonText: `  OK`,
+      })
+        this.router.navigate(['/home']);
+      
   }
 }

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-generate-invoice',
@@ -14,6 +15,7 @@ export class GenerateInvoiceComponent implements OnInit {
   invoiceForm: FormGroup;
   customerUser!: any;
   merchant!: any;
+  src!: string;
 
   constructor(
     private dialog: MatDialogRef<GenerateInvoiceComponent>,
@@ -21,6 +23,7 @@ export class GenerateInvoiceComponent implements OnInit {
     private auth: AuthService,
     private router: Router
   ) {
+    this.src = '/assets/images/success.PNG';
     this.invoiceForm = new FormGroup({
       merchantUsername: new FormControl(
         { value: this.auth.getUserName(), disabled: true },
@@ -72,9 +75,10 @@ export class GenerateInvoiceComponent implements OnInit {
         .subscribe((result) => {
           if (result.success == true) {
             this.toastr.success('Invoice Generated Successfully', 'Success!');
+            this.closeDialog();
             location.reload(); // refresh the page
             this.ngOnInit();
-            this.closeDialog();
+            
           } else {
             this.toastr.error(result.errorReason, 'Error!');
           }
