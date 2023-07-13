@@ -7,7 +7,7 @@
 <div class="container">
   <div class="home-body">
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-      <mat-tab label="Generate Invoice">
+      <mat-tab label="Generate Invoice" class="invoice-main">
         <ng-container *ngIf="invoices?.length === 0">
           <div class="invoice-container">
             <div class="invoice-content">
@@ -35,14 +35,16 @@
           </div>
         </ng-container>
         <ng-container *ngIf="invoices?.length > 0">
-          <div class="invoice-body" *ngFor="let invoice of invoices">
-            <div class="invoice-item">
-              <div class="invoice-texts">
-                <p>Date Created: {{ invoice?.createdDate | date : "short" }}</p>
-                <p>Invoice ID: {{ invoice?.invoiceId }}</p>
-              </div>
-              <div class="invoice-button-2">
-                <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
+          <div class="invoice-body" >
+            <div class="invoice-list" *ngFor="let invoice of invoices">
+              <div class="invoice-item">
+                <div class="invoice-texts">
+                  <p>Date Created: {{ invoice?.createdDate | date : "short" }}</p>
+                  <p>Invoice ID: {{ invoice?.invoiceId }}</p>
+                </div>
+                <div class="invoice-button-2">
+                  <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
+                </div>
               </div>
             </div>
           </div>

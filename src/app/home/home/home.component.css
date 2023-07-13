@@ -20,8 +20,10 @@
     color: var(--text-two);
 }
 .invoice-body {
-    padding: 30px;
+    padding: 20px;
+    margin-top: 20px;
 }
+
 .invoice-btn-2{
     border: #ccc;
     border-radius: 10px;
