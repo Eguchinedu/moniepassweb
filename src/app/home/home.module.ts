@@ -13,6 +13,7 @@ import { GenerateOrdersComponent } from './generate-orders/generate-orders.compo
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.component';
+import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.component';
 
 
 
@@ -25,6 +26,7 @@ import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.compo
     GenerateInvoiceComponent,
     GenerateOrdersComponent,
     ViewInvoiceComponent,
+    WithdrawInvoiceComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,6 @@ import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.compo
       },
     ]),
   ],
-  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent],
+  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent, WithdrawInvoiceComponent],
 })
 export class HomeModule {}

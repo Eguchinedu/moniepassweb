@@ -76,7 +76,7 @@
       </div>
       <ng-container *ngIf="currentInvoice?.merchantUsername === user">
           <div class="invoice-button">
-            <button class="invoice-btn">Withdraw Invoice</button>
+            <button class="invoice-btn" (click)="withdrawInvoice(currentInvoice?.invoiceId)">Withdraw Invoice</button>
           </div>
       </ng-container>
       <ng-container *ngIf="currentInvoice?.customerUsername === user">

@@ -51,6 +51,9 @@ export class AuthService {
   getInvoiceById(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `invoice/invoiceid/${data}`);
   }
+  deleteInvoice(data: any): Observable<any> {
+    return this.http.delete(this.baseUrl + `invoice/invoiceid/${data}`);
+  }
 
   getOrders(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `order/username/${data}`);
