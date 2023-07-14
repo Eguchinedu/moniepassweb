@@ -48,6 +48,7 @@
       </div>
       <div class="order-progress-section">
         <div class="order-progress" *ngFor="let stages of currentOrder?.stages">
+          <div class="tracker" *ngIf="stages?.status !== 1"></div>
           <div class="progress-box">
             <div class="progress-box-icon">
               <i class="bi bi-check-circle-fill"></i>

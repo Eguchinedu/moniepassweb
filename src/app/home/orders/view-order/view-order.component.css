@@ -50,17 +50,14 @@ p {
      margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px;
+    padding: 30px;
 
 }
-.order-progress {
-    padding: 10px;
-}
+
 .progress-box {
     display: flex;
     width: 25%;
     align-items: center;
-    margin-bottom: 10px;
     border: 1px solid var(--text-two);
     padding: 8px;
     border-radius: 10px;
@@ -91,4 +88,9 @@ p {
     background-color: #ccc;
     color: var(--bg-one);
     cursor: not-allowed;
+}
+.tracker {
+    border-left: 2px dashed #ccc;
+    height: 30px;
+    margin-left: 28px;
 }
