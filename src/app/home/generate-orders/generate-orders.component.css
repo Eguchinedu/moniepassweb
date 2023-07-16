@@ -158,6 +158,13 @@ label {
     .tab-header {
     width: 100%;
 }
+.order-header {
+    margin: 20px 0;
+}
+
+.order-body {
+    padding: 10px;
+}
 }
 @media only screen and (max-width: 768px) {
 }
