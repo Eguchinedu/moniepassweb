@@ -36,6 +36,8 @@ export class ViewOrderComponent {
       console.log(this.currentOrder);
     });
     
+
+
   }
   goback() {
     window.history.back();
@@ -73,6 +75,7 @@ export class ViewOrderComponent {
         if (result === 0) {
     this.auth.confirmDeliveryMerchant(confirm).subscribe((result) => {
       console.log(result);
+      this.toastr.success('Feedback Sent');
       if (result.success === true) {
         Swal.fire({
            title: 'Submitted',
