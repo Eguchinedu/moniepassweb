@@ -32,7 +32,7 @@
                 
         </div>
         <div class="login-button">
-            <button class="log-btn" [disabled]="!confirmForm.valid" >Confirm</button>
+            <button class="log-btn" [disabled]="!confirmForm.valid || isLoading" >Confirm</button>
         </div>
     </form>
     </div>

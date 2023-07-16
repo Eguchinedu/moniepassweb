@@ -83,10 +83,10 @@
         <div class="match-error">
             <p *ngIf="signUpForm.errors?.['passwordmatcherror']" class="alert alert-danger">Passwords do not match!!</p>
             <p *ngIf="signUpForm.hasError('email', 'email')" class="alert alert-danger">Please type in a valid email</p>
-            <p *ngIf="signUpForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short</p>
+            <p *ngIf="signUpForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short, Must be at least 8 characters</p>
         </div>
         <div class="login-button">
-            <button class="log-btn" [disabled]="!signUpForm.valid" >Sign Up</button>
+            <button class="log-btn" [disabled]="!signUpForm.valid || isLoading" >Sign Up</button>
         </div>
     </form>
     <div class="sign-up-link"><p>

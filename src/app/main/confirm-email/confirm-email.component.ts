@@ -13,7 +13,7 @@ export class ConfirmEmailComponent {
   postError = false;
   postErrorMessage = '';
   email!: string | null;
-
+  isLoading: boolean = false;
   confirmForm: FormGroup;
 
   constructor(
@@ -23,15 +23,17 @@ export class ConfirmEmailComponent {
   ) {
     this.email = this.auth.getEmail();
     this.confirmForm = new FormGroup({
-      email: new FormControl({value: this.email, disabled: true}, [Validators.required, Validators.email]),
+      email: new FormControl({ value: this.email, disabled: true }, [
+        Validators.required,
+        Validators.email,
+      ]),
       code: new FormControl(null, [Validators.required]),
     });
   }
   ngOnInit() {
     this.email = this.auth.getEmail();
-    console.log(this.email)
+    console.log(this.email);
   }
-  
 
   get f() {
     return this.confirmForm.controls;
@@ -44,8 +46,11 @@ export class ConfirmEmailComponent {
   }
 
   onSubmit() {
-      if (this.confirmForm.valid) {
-        this.auth.confirmEmail(this.confirmForm.getRawValue()).subscribe((result) => {
+    if (this.confirmForm.valid) {
+        this.isLoading = true;
+      this.auth
+        .confirmEmail(this.confirmForm.getRawValue())
+        .subscribe((result) => {
           if (result.success == true) {
             console.log(result);
             this.toastr.success('Email Confirmed successfully', 'Success!');
@@ -55,8 +60,8 @@ export class ConfirmEmailComponent {
             this.toastr.error(result.errorReason, 'Error!');
           }
         });
-      } else {
-        this.toastr.error('Invalid credentials', 'Error!');
-      }
+    } else {
+      this.toastr.error('Invalid credentials', 'Error!');
+    }
   }
 }

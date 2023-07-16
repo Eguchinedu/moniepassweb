@@ -16,7 +16,7 @@ export class SignUpFormComponent {
   changeType2: boolean = true;
   postError = false;
   postErrorMessage = '';
-
+  isLoading: boolean = false;
   signUpForm: FormGroup;
 
   constructor(
@@ -41,9 +41,7 @@ export class SignUpFormComponent {
       }
     );
   }
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
   viewPass() {
     this.visible = !this.visible;
     this.changeType = !this.changeType;
@@ -78,12 +76,16 @@ export class SignUpFormComponent {
   }
 
   onSubmit() {
-      if (this.signUpForm.valid) {
-         const user = this.signUpForm.getRawValue();
+    if (this.signUpForm.valid) {
+        this.isLoading = true;
+      const user = this.signUpForm.getRawValue();
       this.auth.signUp(this.signUpForm.getRawValue()).subscribe((result) => {
         if (result.success == true) {
           console.log(result);
-          this.toastr.success('Account Created Successfully, Kindly confirm email', 'Success!');
+          this.toastr.success(
+            'Account Created Successfully, Kindly confirm email',
+            'Success!'
+          );
           this.auth.setEmail(user.email);
           this.router.navigate(['sign-up/confirm-email']);
         } else {
@@ -93,5 +95,5 @@ export class SignUpFormComponent {
     } else {
       this.toastr.error('Invalid credentials', 'Error!');
     }
-}
+  }
 }

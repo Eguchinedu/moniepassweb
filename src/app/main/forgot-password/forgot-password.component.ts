@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ForgotPasswordComponent {
   postError = false;
   postErrorMessage = '';
-
+  isLoading: boolean = false;
   forgotPassForm: FormGroup;
 
   constructor(
@@ -38,6 +38,7 @@ export class ForgotPasswordComponent {
 
   onSubmit() {
     if (this.forgotPassForm.valid) {
+        this.isLoading = true;
       const user = this.forgotPassForm.getRawValue();
       console.log(user);
       this.auth

@@ -35,7 +35,7 @@
         </div>
         <div class="match-error">
             <p *ngIf="loginForm.hasError('email', 'email')" class="alert alert-danger">Please type in a valid email</p>
-            <p *ngIf="loginForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short</p>
+            <p *ngIf="loginForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short, Must be at least 8 characters</p>
         </div>
         
         <div class="form-section">

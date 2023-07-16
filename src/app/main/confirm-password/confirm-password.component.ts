@@ -14,9 +14,10 @@ export class ConfirmPasswordComponent {
   changeType: boolean = true;
   visible2: boolean = true;
   changeType2: boolean = true;
+  isLoading: boolean = false;
   postError = false;
   postErrorMessage = '';
-email!: string | null;
+  email!: string | null;
   confirmPassForm: FormGroup;
 
   constructor(
@@ -79,19 +80,19 @@ email!: string | null;
 
   onSubmit() {
     if (this.confirmPassForm.valid) {
-      this.auth.confirmPass(this.confirmPassForm.getRawValue()).subscribe((result) => {
-        if (result.success == true) {
-          console.log(result);
-          this.toastr.success(
-            'Password updated successfully',
-            'Success!'
-          );
+        this.isLoading = true;
+      this.auth
+        .confirmPass(this.confirmPassForm.getRawValue())
+        .subscribe((result) => {
+          if (result.success == true) {
+            console.log(result);
+            this.toastr.success('Password updated successfully', 'Success!');
             this.auth.clear();
-          this.router.navigate(['/login']);
-        } else {
-          this.toastr.error(result.errorReason, 'Error!');
-        }
-      });
+            this.router.navigate(['/login']);
+          } else {
+            this.toastr.error(result.errorReason, 'Error!');
+          }
+        });
     } else {
       this.toastr.error('Invalid credentials', 'Error!');
     }
