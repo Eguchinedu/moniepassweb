@@ -1,5 +1,5 @@
 .container {
-    padding: 50px 20px;
+    padding: 30px 20px;
     height: 100vh;
     color: var(--text-two);
 }
@@ -94,3 +94,20 @@ p {
     height: 30px;
     margin-left: 28px;
 }
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 768px) {
+    .progress-box {
+        width: 40%;
+    }
+}
+ @media only screen and (max-width: 480px) {
+        .progress-box {
+        width: 70%;
+    }
+    .merchant-section {
+        flex-direction: column;
+    }
+ }
