@@ -65,3 +65,18 @@
     justify-content: center;
     align-items: center;
 }
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 768px) {
+}
+ @media only screen and (max-width: 480px) {
+    .invoice-item {
+        flex-direction: column;
+    }
+    .invoice-texts {
+        margin: 10px 0;
+    }
+   
+ }
