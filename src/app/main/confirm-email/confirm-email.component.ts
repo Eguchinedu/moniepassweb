@@ -32,7 +32,6 @@ export class ConfirmEmailComponent {
   }
   ngOnInit() {
     this.email = this.auth.getEmail();
-    console.log(this.email);
   }
 
   get f() {
@@ -40,7 +39,6 @@ export class ConfirmEmailComponent {
   }
 
   onHttpError(errorResponse: any) {
-    console.log('error: ', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
   }
@@ -52,7 +50,6 @@ export class ConfirmEmailComponent {
         .confirmEmail(this.confirmForm.getRawValue())
         .subscribe((result) => {
           if (result.success == true) {
-            console.log(result);
             this.toastr.success('Email Confirmed successfully', 'Success!');
             this.auth.clear();
             this.router.navigate(['/login']);

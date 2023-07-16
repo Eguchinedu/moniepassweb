@@ -22,7 +22,6 @@ export class InvoicesComponent implements OnInit {
   loadInvoices(data: any): void {
     this.auth.getInvoice(data).subscribe((invoice) => {
       this.invoices = invoice;
-      console.log(this.invoices);
     });
   }
   viewInvoice(id: any): void {

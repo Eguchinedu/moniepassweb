@@ -73,7 +73,6 @@ export class ConfirmPasswordComponent {
   };
 
   onHttpError(errorResponse: any) {
-    console.log('error: ', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
   }
@@ -85,7 +84,6 @@ export class ConfirmPasswordComponent {
         .confirmPass(this.confirmPassForm.getRawValue())
         .subscribe((result) => {
           if (result.success == true) {
-            console.log(result);
             this.toastr.success('Password updated successfully', 'Success!');
             this.auth.clear();
             this.router.navigate(['/login']);

@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog
   ) {
-    console.log(this.auth.getEmail());
     this.user = this.auth.getFirstName();
     this.userName = this.auth.getUserName();
   }
@@ -33,13 +32,11 @@ export class HomeComponent implements OnInit {
   loadInvoices(data: any): void {
     this.auth.getInvoice(data).subscribe((invoice) => {
       this.invoices = invoice.slice(Math.max(invoice.length - 4, 0));
-      console.log(this.invoices);
     });
   }
   loadOrders(data: any): void {
     this.auth.getOrders(data).subscribe((order) => {
       this.orders = order.slice(Math.max(order.length - 4, 0));
-      console.log(this.orders);
     });
   }
   createInvoice(): void {

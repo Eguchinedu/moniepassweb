@@ -43,11 +43,9 @@ export class GenerateOrdersComponent implements OnInit {
     this.dialog.close();
   }
   checkCustomer(userName: any): void {
-    console.log(userName);
     this.auth.getClient(userName).subscribe((result) => {
       if (result) {
         this.customerUser = result;
-        console.log(this.customerUser);
       } else {
         this.orderForm.controls['customerUsername'].setValue(null);
         this.customerUser = null;
@@ -56,11 +54,9 @@ export class GenerateOrdersComponent implements OnInit {
     });
   }
   calcServiceFee(amount: any): void {
-    console.log(amount);
     this.auth.getServiceFee(amount).subscribe((result) => {
       if (result) {
         this.serviceFee = result;
-        console.log(this.serviceFee);
       } else {
         this.orderForm.controls['amount'].setValue(null);
         this.serviceFee = null;
@@ -70,15 +66,12 @@ export class GenerateOrdersComponent implements OnInit {
   }
   onSubmit() {
     if (this.orderForm.valid) {
-      console.log(this.orderForm.getRawValue());
       this.auth.genOrder(this.orderForm.getRawValue())
       .subscribe((result) => {
         if (result.success == true) {
           this.toastr.success('Order generated Successfully', 'Success!');
           this.closeDialog();
           window.location.href = result.data.authorizationUrl;
-      // location.reload(); // refresh the page
-      // this.ngOnInit();
           } else {
             this.toastr.error(result.errorReason, 'Error!');
           }

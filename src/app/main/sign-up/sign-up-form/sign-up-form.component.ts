@@ -70,7 +70,6 @@ export class SignUpFormComponent {
   };
 
   onHttpError(errorResponse: any) {
-    console.log('error: ', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
   }
@@ -81,7 +80,6 @@ export class SignUpFormComponent {
       const user = this.signUpForm.getRawValue();
       this.auth.signUp(this.signUpForm.getRawValue()).subscribe((result) => {
         if (result.success == true) {
-          console.log(result);
           this.toastr.success(
             'Account Created Successfully, Kindly confirm email',
             'Success!'

@@ -60,16 +60,12 @@ export class ProfileComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
         ]),
-        // confirmPassword: new FormControl(null, [Validators.required]),
+
       }
-      // {
-      //   validators: this.MustMatch,
-      // }
+   
     );
   }
   ngOnInit() {
-    // this.tab1=true;
-    // this.status1=true;
     this.getBanks();
     this.getUserDetails()
   }
@@ -115,35 +111,19 @@ export class ProfileComponent implements OnInit {
     this.status2 = false;
     this.status1 = false;
   }
-  // MustMatch: ValidatorFn = (
-  //   control: AbstractControl
-  // ): ValidationErrors | null => {
-  //   let password = control.get('password');
-  //   let confirmPassword = control.get('confirmPassword');
 
-  //   if (
-  //     password &&
-  //     confirmPassword &&
-  //     password?.value !== confirmPassword?.value
-  //   ) {
-  //     return { passwordmatcherror: true };
-  //   }
-  //   return null;
-  // };
 
   get f() {
     return this.bankForm.controls;
   }
 
   onHttpError(errorResponse: any) {
-    console.log('error: ', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
   }
 
   onSubmitBankForm() {
     if (this.bankForm.valid) {
-      console.log(this.bankForm.getRawValue());
       this.auth.addBank(this.bankForm.getRawValue())
         .subscribe((result) => {
           if (result.success == true) {
@@ -160,7 +140,6 @@ export class ProfileComponent implements OnInit {
   }
   onSubmitChangePassForm() {
     if (this.changePassForm.valid) {
-      console.log(this.changePassForm.getRawValue());
       this.auth
         .changePass(this.changePassForm.getRawValue())
         .subscribe((result) => {

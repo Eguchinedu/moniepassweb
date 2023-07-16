@@ -15,7 +15,6 @@ export class ViewInvoiceComponent {
   invoiceId: string = '';
   user!: any;
   errorMessage = '';
-  src!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +23,6 @@ export class ViewInvoiceComponent {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.src = '/assets/images/success.PNG';
   }
   ngOnInit(): void {
     this.user = this.auth.getUserName();
@@ -32,7 +30,6 @@ export class ViewInvoiceComponent {
     this.invoiceId = this.route.snapshot.params['id'];
     this.auth.getInvoiceById(id).subscribe((invoice) => {
       this.currentInvoice = invoice;
-      console.log(this.currentInvoice);
     });
   }
   goback() {
@@ -68,33 +65,10 @@ export class ViewInvoiceComponent {
     this.auth.genOrder(this.currentInvoice).subscribe((result) => {
       if (result.success == true) {
         window.location.href = result.data.authorizationUrl;
-
-        // Swal.fire({
-        //    title: 'Payment Successful',
-        //    html: 'Transaction id: #133211',
-        //    imageUrl: this.src,
-        //    imageWidth: 150,
-        //    imageHeight: 150,
-        //    confirmButtonText: `  OK`,
-        //  })
-        //  this.router.navigate(['/home']);
       } else {
         this.toastr.error(result.errorReason, 'Error!');
       }
     });
   }
-
-  // verifyPayment(){
-  //   this.auth.verifyPayment(this.currentInvoice)
-  //   .subscribe((result) => {
-  //     if (result.status == true) {
-  //       this.toastr.success(result.message,'Payment Successful');
-  //       location.reload(); // refresh the page
-  //       this.ngOnInit();
-  //     } else{
-  //       this.toastr.error(result.message, 'Error!');
-  //     }
-  //   });
-  // }
 }
     

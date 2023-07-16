@@ -44,7 +44,6 @@ export class LoginFormComponent {
   }
 
   onHttpError(errorResponse: any) {
-    console.log('error: ', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
   }

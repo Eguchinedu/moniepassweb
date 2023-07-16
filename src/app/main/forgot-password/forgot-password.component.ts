@@ -31,7 +31,6 @@ export class ForgotPasswordComponent {
   }
 
   onHttpError(errorResponse: any) {
-    console.log('error: ', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
   }
@@ -40,12 +39,10 @@ export class ForgotPasswordComponent {
     if (this.forgotPassForm.valid) {
         this.isLoading = true;
       const user = this.forgotPassForm.getRawValue();
-      console.log(user);
       this.auth
         .forgotPass(this.forgotPassForm.getRawValue())
         .subscribe((result) => {
           if (result.success == true) {
-            console.log(result);
             this.toastr.success(
               'Code Sent! Kindly check your email',
               'Success!'

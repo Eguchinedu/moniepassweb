@@ -21,7 +21,6 @@ export class OrdersComponent implements OnInit {
   loadOrders(data: any): void {
     this.auth.getOrders(data).subscribe((order) => {
       this.orders = order;
-      console.log(this.orders);
     });
   }
   viewOrder(id: any): void {
