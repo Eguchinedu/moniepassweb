@@ -72,3 +72,37 @@ p {
 .bi {
     margin: 0 5px;
 }
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 768px) {
+}
+ @media only screen and (max-width: 480px) {
+    .container {
+        padding: 20px 10px;
+    }
+    .invoice-body {
+        padding: 20px;
+    }
+    .merchant-section {
+        flex-direction: column;
+    }
+    .client-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .amount-section {
+        text-align: left;
+    }
+    .invoice-button {
+        flex-direction: column;
+    }
+    .invoice-btn {
+        margin: 10px 0;
+    }
+    .go-back {
+        margin: 20px 0;
+    }
+   
+ }
