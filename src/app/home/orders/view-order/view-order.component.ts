@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfirmOrderCustomerComponent } from '../../confirm-order-customer/confirm-order-customer.component';
 import Swal from 'sweetalert2';
+import { ConfirmProductDeliveredComponent } from '../../confirm-product-delivered/confirm-product-delivered.component';
 
 @Component({
   selector: 'app-view-order',
@@ -48,8 +49,16 @@ export class ViewOrderComponent {
       orderId: id,
       status: 2,
     };
+    return this.dialog
+      .open(ConfirmProductDeliveredComponent, {
+        width: '350px',
+        hasBackdrop: true,
+        disableClose: true,
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result === true) {
     this.auth.confirmDeliveryMerchant(confirm).subscribe((result) => {
-      console.log(result);
       if (result.success === true) {
         this.toastr.success('Product Delivered Successfully');
         location.reload(); // refresh the page
@@ -57,7 +66,7 @@ export class ViewOrderComponent {
       } else {
         this.toastr.error(result.errorReason);
       }
-    });
+    })}});
   }
   productReceived(id: any, status: any) {
     const confirm = {

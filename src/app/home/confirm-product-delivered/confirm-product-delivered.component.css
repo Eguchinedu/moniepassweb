@@ -1,0 +1,29 @@
+.confirm-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.confirm-yes{
+    flex: 1;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    background-color: green;
+    color: white;
+    transition: .5s ease-in-out;
+}
+.confirm-no {
+    flex: 1;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    transition: .5s ease-in-out;
+}
+.confirm-yes:hover {
+    cursor: pointer;
+    background-color: rgb(2, 75, 2);
+
+}
+.confirm-no:hover {
+    cursor: pointer;
+    background-color: rgb(130, 129, 129);
+
+}

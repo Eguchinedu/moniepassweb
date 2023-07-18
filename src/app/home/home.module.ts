@@ -16,6 +16,7 @@ import { ViewInvoiceComponent } from './invoices/view-invoice/view-invoice.compo
 import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.component';
 import { ViewOrderComponent } from './orders/view-order/view-order.component';
 import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-order-customer.component';
+import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/confirm-product-delivered.component';
 
 
 
@@ -31,6 +32,7 @@ import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-
     WithdrawInvoiceComponent,
     ViewOrderComponent,
     ConfirmOrderCustomerComponent,
+    ConfirmProductDeliveredComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +70,6 @@ import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-
       },
     ]),
   ],
-  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent, WithdrawInvoiceComponent, ConfirmOrderCustomerComponent],
+  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent, WithdrawInvoiceComponent, ConfirmOrderCustomerComponent, ConfirmProductDeliveredComponent],
 })
 export class HomeModule {}
