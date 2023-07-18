@@ -105,7 +105,7 @@ p {
 }
  @media only screen and (max-width: 480px) {
         .progress-box {
-        width: 70%;
+        width: 100%;
     }
     .merchant-section {
         flex-direction: column;
