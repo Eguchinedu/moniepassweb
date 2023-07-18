@@ -31,12 +31,24 @@ export class HomeComponent implements OnInit {
   }
   loadInvoices(data: any): void {
     this.auth.getInvoice(data).subscribe((invoice) => {
-      this.invoices = invoice.slice(Math.max(invoice.length - 4, 0));
+      this.invoices = invoice
+        .slice(Math.max(invoice.length - 4, 0))
+        .sort(
+          (a: any, b: any) =>
+            new Date(b.lastModifiedDate).getTime() -
+            new Date(a.lastModifiedDate).getTime()
+        );
     });
   }
   loadOrders(data: any): void {
     this.auth.getOrders(data).subscribe((order) => {
-      this.orders = order.slice(Math.max(order.length - 4, 0));
+      this.orders = order
+        .slice(Math.max(order.length - 4, 0))
+        .sort(
+          (a: any, b: any) =>
+            new Date(b.lastModifiedDate).getTime() -
+            new Date(a.lastModifiedDate).getTime()
+        );
     });
   }
   createInvoice(): void {

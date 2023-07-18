@@ -21,7 +21,11 @@ export class InvoicesComponent implements OnInit {
   }
   loadInvoices(data: any): void {
     this.auth.getInvoice(data).subscribe((invoice) => {
-      this.invoices = invoice;
+      this.invoices = invoice.sort(
+        (a: any, b: any) =>
+          new Date(b.lastModifiedDate).getTime() -
+          new Date(a.lastModifiedDate).getTime()
+      );;
     });
   }
   viewInvoice(id: any): void {

@@ -20,7 +20,11 @@ export class OrdersComponent implements OnInit {
 
   loadOrders(data: any): void {
     this.auth.getOrders(data).subscribe((order) => {
-      this.orders = order;
+      this.orders = order.sort(
+        (a: any, b: any) =>
+          new Date(b.lastModifiedDate).getTime() -
+          new Date(a.lastModifiedDate).getTime()
+      );;
     });
   }
   viewOrder(id: any): void {
