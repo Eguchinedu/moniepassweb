@@ -78,8 +78,13 @@
 .nav-link-log{
     font-weight: 900;
     font-size: 18px;
-    color: rgba(0, 29, 109, 1);
+    color:#E12525;
+;
     text-decoration: none !important;
+}
+.bi-box-arrow-right{
+        color:#E12525;
+
 }
 @media only screen and (max-width: 1200px) {
 }

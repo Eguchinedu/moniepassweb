@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     private auth: AuthService,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) {} 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
