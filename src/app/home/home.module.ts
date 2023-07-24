@@ -18,6 +18,7 @@ import { ViewOrderComponent } from './orders/view-order/view-order.component';
 import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-order-customer.component';
 import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/confirm-product-delivered.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 
@@ -41,6 +42,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     ReactiveFormsModule,
     MatTabsModule,
     MatDialogModule,
+    NgxDropzoneModule,
     MatIconModule,
     FormsModule,
     RouterModule.forChild([
@@ -77,6 +79,12 @@ import { FeedbackComponent } from './feedback/feedback.component';
       },
     ]),
   ],
-  entryComponents: [GenerateInvoiceComponent, GenerateOrdersComponent, WithdrawInvoiceComponent, ConfirmOrderCustomerComponent, ConfirmProductDeliveredComponent],
+  entryComponents: [
+    GenerateInvoiceComponent,
+    GenerateOrdersComponent,
+    WithdrawInvoiceComponent,
+    ConfirmOrderCustomerComponent,
+    ConfirmProductDeliveredComponent,
+  ],
 })
 export class HomeModule {}

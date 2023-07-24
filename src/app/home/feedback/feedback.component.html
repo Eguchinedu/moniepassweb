@@ -47,6 +47,29 @@
                   ></textarea>
                 </div>
               </div>
+              <div class="form-group">
+                <label for="customerComplaintImage">Upload Images</label>
+                <ngx-dropzone class="drop" (change)="onSelect($event)">
+	<ngx-dropzone-label>
+        <div>
+            <div class="link-flex">
+                <div class="icon">
+                  <i class="bi bi-cloud-upload"></i>
+                </div>
+                <div class="link">
+                  <p>Browse</p>
+                </div>
+              </div>
+              <div class="file-type">
+                <p>Supported formats: JPEG, PNG, GIF</p>
+              </div>
+        </div>
+    </ngx-dropzone-label>
+	<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"  [removable]="true" (removed)="onRemove(f)">
+		<ngx-dropzone-label >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+	</ngx-dropzone-image-preview>
+</ngx-dropzone>
+              </div>
               <div class="login-button">
                 <button class="log-btn" [disabled]="!feedBackForm.valid">
                   Submit
