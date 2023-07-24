@@ -17,6 +17,7 @@ import { WithdrawInvoiceComponent } from './withdraw-invoice/withdraw-invoice.co
 import { ViewOrderComponent } from './orders/view-order/view-order.component';
 import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-order-customer.component';
 import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/confirm-product-delivered.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 
@@ -33,6 +34,7 @@ import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/co
     ViewOrderComponent,
     ConfirmOrderCustomerComponent,
     ConfirmProductDeliveredComponent,
+    FeedbackComponent,
   ],
   imports: [
     CommonModule,
@@ -56,6 +58,11 @@ import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/co
       {
         path: 'orders/:id',
         component: ViewOrderComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'orders/:id/feedback',
+        component: FeedbackComponent,
         canActivate: [AuthGuard],
       },
       {

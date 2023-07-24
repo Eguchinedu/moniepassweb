@@ -11,6 +11,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HomeModule } from './home/home.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CloudinaryModule } from '@cloudinary/ng';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, NavMenuComponent],
@@ -19,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+    CloudinaryModule,
     ToastrModule.forRoot(),
     HomeModule,
     AppRoutingModule,

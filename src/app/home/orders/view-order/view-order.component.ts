@@ -99,6 +99,9 @@ export class ViewOrderComponent {
       } else {
         this.toastr.error(result.errorReason);
       }
-    })}});
+    })} else if(result === 1){
+      this.router.navigate([`/orders/${id}/feedback`]);
+    }
+  });
   }
 }

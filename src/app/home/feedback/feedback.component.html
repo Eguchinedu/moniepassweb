@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="invoice-container">
+    <button class="go-back" (click)="goback()">
+      <i class="bi bi-caret-left-fill"></i>
+      Go Back
+    </button>
+    <div class="invoice-heading">
+      <h3 style="font-weight: 500">Complaints</h3>
+    </div>
+    <div class="invoice-body">
+      <div class="form-body">
+        <form action="" (ngSubmit)="onSubmit()" [formGroup]="feedBackForm">
+              <div class="form-group">
+                <label for="customerComplaintTitle">Title</label>
+                <div class="error-field">
+                  <input
+                    type="text"
+                    name="customerComplaintTitle"
+                    id="customerComplaintTitle"
+                    class="login-field"
+                    placeholder="Enter Title.."
+                    formControlName="customerComplaintTitle"
+                    required
+                  />
+                  <span
+                    [class]="
+                      feedBackForm.controls['customerComplaintTitle'].dirty &&
+                      feedBackForm.hasError('required', 'customerComplaintTitle')
+                        ? 'error-show'
+                        : 'error-span'
+                    "
+                    ><i class="bi bi-x-circle"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="customerComplaintDescription">Description</label>
+                <div class="error-field">
+                  <textarea 
+                    type="text"
+                    name="customerComplaintDescription"
+                    id="customerComplaintDescription"
+                    class="login-field"
+                    placeholder="Text..."
+                    rows="5"
+                    formControlName="customerComplaintDescription"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="login-button">
+                <button class="log-btn" [disabled]="!feedBackForm.valid">
+                  Submit
+                </button>
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
