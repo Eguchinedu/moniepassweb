@@ -102,7 +102,9 @@ return this.http.put(this.baseUrl +  'order', data)
     return localStorage.getItem('token');
   }
   getUserInfo(token: string) {
-    return JSON.parse(atob(token.split('.')[1]));
+    if(token){
+      return JSON.parse(atob(token.split('.')[1]));
+    }
   }
   setEmail(email: string) {
     return localStorage.setItem('email', email);

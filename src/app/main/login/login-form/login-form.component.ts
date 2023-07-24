@@ -50,8 +50,7 @@ export class LoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      if (this.loginForm.valid) {
-        this.isLoading = true;
+      this.isLoading = true;
         this.auth.login(this.loginForm.getRawValue()).subscribe((result) => {
           this.user = this.auth.getUserInfo(result.token);
           if (result.success == true) {
@@ -61,19 +60,22 @@ export class LoginFormComponent {
             this.auth.setFirstName(this.user.firstname);
             this.toastr.success('Logged in successfully', 'Success!');
             this.router.navigate(['/home']);
-          } else if (result.errorReason === 'Email has not been confirmed') {
+          } 
+          else if (result.errorReason === 'Email has not been confirmed') {
             this.toastr.error(
               `${result.errorReason}, Check email for code`,
               'Error!'
             );
             this.router.navigate(['sign-up/confirm-email']);
-          } else {
+          } 
+          else {
             this.toastr.error(result.errorReason, 'Error!');
+            this.isLoading = false;
           }
         });
-      } else {
+      } 
+      else {
         this.toastr.error('Invalid credentials', 'Error!');
       }
-    }
   }
 }
