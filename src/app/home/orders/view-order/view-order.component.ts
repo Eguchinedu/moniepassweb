@@ -34,10 +34,6 @@ export class ViewOrderComponent {
     this.orderId = this.route.snapshot.params['id'];
     this.auth.getOrderById(id).subscribe((order) => {
       this.currentOrder = order;
-      console.log(this.currentOrder);
-      // if(this.user === this.currentOrder.merchantUsername && this.currentOrder.complaintId !== null ) {
-      //   this.toastr.error('You have a complaint on this order');
-      // }
     });
     
     

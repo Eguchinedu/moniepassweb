@@ -31,10 +31,8 @@ export class ViewComplaintComponent {
     this.orderId = this.route.snapshot.params['id'];
     this.auth.getComplaintById(id).subscribe((order: any) => {
       this.feedBack = order;
-      console.log(this.feedBack);
       this.imageSrc = this.feedBack.customerComplaintImages.split(',');
 
-      console.log(this.imageSrc);
     });
   }
   goback() {

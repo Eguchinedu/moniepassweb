@@ -44,12 +44,10 @@ export class FeedbackComponent implements OnInit {
   }
 
   onSelect(event: any) {
-    // console.log(event);
     this.files.push(...event.addedFiles);
   }
 
   onRemove(event: any) {
-    // console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -66,29 +64,23 @@ export class FeedbackComponent implements OnInit {
       data.append('upload_preset', 'moniepassweb_feedback');
       data.append('cloud_name', 'dpa8pui0l');
       this.auth.uploadImages(data).subscribe((res) => {
-        console.log(res);
         this.Urls.push(res.url);
-        console.log('Uploaded', this.Urls);
         if (this.Urls.length === this.files.length) {
-          console.log('aaaa');
-
-          console.log(this.Urls.join(','));
           this.feedBackForm.patchValue({
             customerComplaintImages: this.Urls.join(','),
           });
           if (this.feedBackForm.valid) {
-            console.log(this.feedBackForm.getRawValue());
-            this.auth.postComplaint(this.feedBackForm.getRawValue()).subscribe((result)=> {
-              console.log(result);
-              if(result.success === true){
-                this.toastr.success('Complaint sent successfully 👍');
-                // this.router.navigate([`/home`]);
-                this.goback();
-              }else {
-                    this.toastr.error(result.errorReason);
-                    this.isLoading = false;
-              }
-            })
+            this.auth
+              .postComplaint(this.feedBackForm.getRawValue())
+              .subscribe((result) => {
+                if (result.success === true) {
+                  this.toastr.success('Complaint sent successfully 👍');
+                  this.goback();
+                } else {
+                  this.toastr.error(result.errorReason);
+                  this.isLoading = false;
+                }
+              });
           }
         }
       });
