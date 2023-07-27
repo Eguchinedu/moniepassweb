@@ -15,6 +15,7 @@ export class ViewComplaintComponent {
   user!: any;
   errorMessage = '';
   imageSrc!: string[];
+  orderId!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class ViewComplaintComponent {
     this.user = this.auth.getUserName();
     let id = this.route.snapshot.params['id2'];
     this.complaintId = this.route.snapshot.params['id2'];
+    this.orderId = this.route.snapshot.params['id'];
     this.auth.getComplaintById(id).subscribe((order: any) => {
       this.feedBack = order;
       console.log(this.feedBack);
@@ -37,5 +39,8 @@ export class ViewComplaintComponent {
   }
   goback() {
     window.history.back();
+  }
+  fileComplaint(id: string){
+    this.router.navigate([`/orders/${this.orderId}/feedback`]);
   }
 }

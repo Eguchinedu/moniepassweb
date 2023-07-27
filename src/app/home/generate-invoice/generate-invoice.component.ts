@@ -47,7 +47,13 @@ export class GenerateInvoiceComponent implements OnInit {
     this.auth.getClient(userName).subscribe((result) => {
       if (result) {
         this.customerUser = result;
-      } else {
+        if(this.auth.getUserName() === result.username) {
+          this.invoiceForm.controls['customerUsername'].setValue(null);
+          this.customerUser = null;
+          this.toastr.error('You cannot generate an invoice for yourself');
+        }
+      } 
+      else {
         this.invoiceForm.controls['customerUsername'].setValue(null);
         this.customerUser = null;
         this.toastr.error('Customer not found');

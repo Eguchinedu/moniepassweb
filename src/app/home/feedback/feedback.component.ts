@@ -58,6 +58,7 @@ export class FeedbackComponent implements OnInit {
       this.toastr.error('Please add images');
       return;
     }
+    this.isLoading = true;
     for (let i = 0; i < this.files.length; i++) {
       const file_data = this.files[i];
       const data = new FormData();
@@ -76,16 +77,16 @@ export class FeedbackComponent implements OnInit {
             customerComplaintImages: this.Urls.join(','),
           });
           if (this.feedBackForm.valid) {
-            this.isLoading = true;
             console.log(this.feedBackForm.getRawValue());
             this.auth.postComplaint(this.feedBackForm.getRawValue()).subscribe((result)=> {
               console.log(result);
               if(result.success === true){
                 this.toastr.success('Complaint sent successfully 👍');
-                // this.router.navigate([`/orders/${this.route.snapshot.params['id']}`]);
+                // this.router.navigate([`/home`]);
                 this.goback();
               }else {
                     this.toastr.error(result.errorReason);
+                    this.isLoading = false;
               }
             })
           }

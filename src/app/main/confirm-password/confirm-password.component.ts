@@ -89,6 +89,7 @@ export class ConfirmPasswordComponent {
             this.router.navigate(['/login']);
           } else {
             this.toastr.error(result.errorReason, 'Error!');
+            this.isLoading = false;
           }
         });
     } else {

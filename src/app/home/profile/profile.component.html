@@ -111,9 +111,11 @@
         </p>
       </div>
               <div class="login-button">
-                <button class="log-btn" [disabled]="!bankForm.valid">
+                <button class="log-btn" *ngIf="!isLoading" [disabled]="!bankForm.valid">
                   Add Bank
                 </button>
+            <button class="log-btn2" *ngIf="isLoading"  disabled><i class='bx bx-loader-alt bx-spin bx-rotate-90' ></i></button>
+                
               </div>
             </form></ng-container>
             <ng-container *ngIf="(user?.bankName && user?.accountNumber) != null">
@@ -237,9 +239,11 @@
         </p>
       </div>
       <div class="login-button">
-        <button class="log-btn" [disabled]="!changePassForm.valid">
+        <button class="log-btn" *ngIf="!isLoading" [disabled]="!changePassForm.valid">
           Change Password
         </button>
+            <button class="log-btn2" *ngIf="isLoading"  disabled><i class='bx bx-loader-alt bx-spin bx-rotate-90' ></i></button>
+
       </div>
     </form>
         </div>

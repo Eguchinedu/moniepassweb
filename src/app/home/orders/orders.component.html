@@ -32,11 +32,13 @@
                     <i class="bi bi-arrow-right-circle"></i>
                   </button>
                   <ng-container *ngIf="order?.merchantUsername === userName">
-                    <button class="invoice-btn-2 not-confirmed" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">Not Confirmed
+                    <button class="invoice-btn-2 not-confirmed" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">
+                     Awaiting Confirmation
                     <i class="bi bi-arrow-right-circle"></i></button>
                   </ng-container>
                   <ng-container *ngIf="order?.customerUsername=== userName">
-                    <button class="invoice-btn-2 not-confirmed" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">Confirm Order
+                    <button class="invoice-btn-2 not-confirmed" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">
+                      Order has arrived
                     <i class="bi bi-arrow-right-circle"></i></button>
                   </ng-container>
                   

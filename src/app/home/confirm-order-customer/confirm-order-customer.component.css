@@ -17,11 +17,11 @@
     font-size: 50px;
 }
 .bi-emoji-smile-fill {
-    color: green;
+    color:  #4caf50;
 }
 .bi-emoji-angry-fill {
-    color: red;
+    color: #f44336;
 }
 .bi-emoji-frown-fill {
-    color: yellow;
+    color:  #ff9800;
 }

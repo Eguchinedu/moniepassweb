@@ -8,6 +8,32 @@
       <h3 style="font-weight: 500">Complaints</h3>
     </div>
     <div class="invoice-body">
+      <ng-container *ngIf="feedBack?.customerComplaintTitle === null">
+      <div class="feedback-container">
+            <div class="invoice-content">
+              <div class="invoice-img">
+                <img
+                  src="../../../assets/images/46.png"
+                  width="100px"
+                  height="100px"
+                  alt="invoice"
+                />
+              </div>
+              <div class="invoice-text" style="width: 300px">
+                <p style="font-weight: 900">No Feedback given</p>
+                <p>
+                  You haven't given any feedback for this complaint yet. Click the button below to give your feedback.
+                </p>
+              </div>
+              <div class="invoice-button">
+                <button class="invoice-btn" (click)="fileComplaint(feedBack?.complaintId)">
+                 Give Feedback
+                </button>
+              </div>
+            </div>
+          </div>
+      </ng-container>
+    <ng-container *ngIf="feedBack?.customerComplaintTitle !== null">
       <div class="complaint-header">
         <div class="complaint-title">
           <p class="bold">Title</p>
@@ -35,6 +61,10 @@
             </div>
         </div>
       </div>
+    </ng-container>
     </div>
   </div>
 </div>
+
+
+

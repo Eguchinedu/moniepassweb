@@ -85,6 +85,10 @@ export class ViewOrderComponent {
       orderId: id,
       status: 3,
     };
+    const confirm3 = {
+      orderId: id,
+      status: 3,
+    };
     return this.dialog
       .open(ConfirmOrderCustomerComponent, {
         width: '450px',
@@ -95,7 +99,6 @@ export class ViewOrderComponent {
       .subscribe((result) => {
         if (result === 0) {
     this.auth.confirmDeliveryMerchant(confirm1).subscribe((result) => {
-      console.log(result);
       this.toastr.success('Feedback Sent');
       if (result.success === true) {
         Swal.fire({
@@ -114,24 +117,11 @@ export class ViewOrderComponent {
     })
   } 
   else if(result === 1){
-    this.auth.confirmDeliveryMerchant(confirm2).subscribe((result) => {
-      console.log(result);
-      if (result.success === true) {
           this.router.navigate([`/orders/${id}/feedback`]);
-        } else {
-          this.toastr.error(result.errorReason);
-        }
-      });
+
     }
   else if(result === 2){
-    this.auth.confirmDeliveryMerchant(confirm2).subscribe((result) => {
-      console.log(result);
-      if (result.success === true) {
           this.router.navigate([`/orders/${id}/feedback`]);
-        } else {
-          this.toastr.error(result.errorReason);
-        }
-      });
     }
   });
   }

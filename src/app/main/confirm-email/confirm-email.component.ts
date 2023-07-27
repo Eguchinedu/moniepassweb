@@ -55,6 +55,7 @@ export class ConfirmEmailComponent {
             this.router.navigate(['/login']);
           } else {
             this.toastr.error(result.errorReason, 'Error!');
+            this.isLoading = false;
           }
         });
     } else {

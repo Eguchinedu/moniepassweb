@@ -51,6 +51,7 @@ export class ForgotPasswordComponent {
             this.router.navigate(['forgot-pwd/confirm-pwd']);
           } else {
             this.toastr.error(result.errorReason, 'Error!');
+            this.isLoading = false;
           }
         });
     } else {

@@ -45,7 +45,8 @@
         </div>
         </div>
         <div class="login-button">
-            <button class="log-btn" [disabled]="!loginForm.valid || isLoading" >Sign In</button>
+            <button class="log-btn" *ngIf="!isLoading" [disabled]="!loginForm.valid" >Sign In</button>
+            <button class="log-btn2" *ngIf="isLoading"  disabled><i class='bx bx-loader-alt bx-spin bx-rotate-90' ></i></button>
         </div>
     </form>
     <div class="sign-up-link"><p>

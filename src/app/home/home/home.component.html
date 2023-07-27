@@ -118,7 +118,6 @@
                     class="invoice-btn-2 pending2"
                     (click)="viewOrder(order?.orderId)"
                     *ngIf="order?.status === 1"
-                    
                   >
                     Pending
                     <i class="bi bi-arrow-right-circle"></i>
@@ -129,7 +128,8 @@
                       (click)="viewOrder(order?.orderId)"
                       *ngIf="order?.status === 2"
                     >
-                      Not Confirmed <i class="bi bi-arrow-right-circle"></i>
+                      Awaiting Confirmation
+                      <i class="bi bi-arrow-right-circle"></i>
                     </button>
                   </ng-container>
                   <ng-container *ngIf="order?.customerUsername === userName">
@@ -138,7 +138,7 @@
                       (click)="viewOrder(order?.orderId)"
                       *ngIf="order?.status === 2"
                     >
-                      Order Delivered <i class="bi bi-arrow-right-circle"></i>
+                      Order has arrived <i class="bi bi-arrow-right-circle"></i>
                     </button>
                   </ng-container>
                   <button
@@ -153,7 +153,6 @@
                     class="invoice-btn-2 confirmed"
                     (click)="viewOrder(order?.orderId)"
                     *ngIf="order?.status === 8"
-                    
                   >
                     Order Confirmed
                     <i class="bi bi-arrow-right-circle"></i>

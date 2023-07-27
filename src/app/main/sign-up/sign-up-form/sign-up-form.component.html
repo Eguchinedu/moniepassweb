@@ -84,7 +84,9 @@
             <p *ngIf="signUpForm.hasError('minlength', 'password')" class="alert alert-danger">Password is too short, Must be at least 8 characters</p>
         </div>
         <div class="login-button">
-            <button class="log-btn" [disabled]="!signUpForm.valid || isLoading" >Sign Up</button>
+            <button class="log-btn" *ngIf="!isLoading" [disabled]="!signUpForm.valid" >Sign Up</button>
+            <button class="log-btn2" *ngIf="isLoading"  disabled><i class='bx bx-loader-alt bx-spin bx-rotate-90' ></i></button>
+
         </div>
     </form>
     <div class="sign-up-link"><p>

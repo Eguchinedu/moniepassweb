@@ -88,6 +88,7 @@ export class SignUpFormComponent {
           this.router.navigate(['sign-up/confirm-email']);
         } else {
           this.toastr.error(result.errorReason, 'Error!');
+            this.isLoading = false;
         }
       });
     } else {

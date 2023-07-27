@@ -30,7 +30,9 @@
                 
         </div>
         <div class="login-button">
-            <button class="log-btn" [disabled]="!confirmForm.valid || isLoading" >Confirm</button>
+            <button class="log-btn" *ngIf="!isLoading" [disabled]="!confirmForm.valid" >Confirm</button>
+            <button class="log-btn2" *ngIf="isLoading"  disabled><i class='bx bx-loader-alt bx-spin bx-rotate-90' ></i></button>
+
         </div>
     </form>
     </div>

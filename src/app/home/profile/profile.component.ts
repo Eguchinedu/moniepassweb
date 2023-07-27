@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   bankForm: FormGroup;
   changePassForm: FormGroup;
   user!: any;
+  isLoading: boolean = false;
 
   constructor(
     private toastr: ToastrService,
@@ -40,44 +41,45 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {
     this.bankForm = new FormGroup({
-      username: new FormControl({ value: this.auth.getUserName(), disabled: true }, [
-        Validators.required,
-      ]),
+      username: new FormControl(
+        { value: this.auth.getUserName(), disabled: true },
+        [Validators.required]
+      ),
       bankCode: new FormControl(null, [Validators.required]),
-      accountNumber: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      accountNumber: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ]),
     });
-    this.changePassForm = new FormGroup(
-      {
-        email: new FormControl(
-          { value: this.auth.getEmail(), disabled: true },
-          [Validators.required, Validators.email]
-        ),
-        password: new FormControl(null, [
-          Validators.required,
-          Validators.minLength(8),
-        ]),
-        newPassword: new FormControl(null, [
-          Validators.required,
-          Validators.minLength(8),
-        ]),
-
-      }
-   
-    );
+    this.changePassForm = new FormGroup({
+      email: new FormControl({ value: this.auth.getEmail(), disabled: true }, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      newPassword: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+    });
   }
   ngOnInit() {
     this.getBanks();
-    this.getUserDetails()
+    this.getUserDetails();
   }
   getBanks() {
     this.auth.getBankList().subscribe((res) => {
       this.bankList = res;
     });
   }
-  getUserDetails(){
-    this.auth.getClient(this.auth.getUserName()).subscribe((res)=>{
-      this.user=res;
-    })
+  getUserDetails() {
+    this.auth.getClient(this.auth.getUserName()).subscribe((res) => {
+      this.user = res;
+    });
   }
   viewPass() {
     this.visible = !this.visible;
@@ -112,7 +114,6 @@ export class ProfileComponent implements OnInit {
     this.status1 = false;
   }
 
-
   get f() {
     return this.bankForm.controls;
   }
@@ -124,22 +125,24 @@ export class ProfileComponent implements OnInit {
 
   onSubmitBankForm() {
     if (this.bankForm.valid) {
-      this.auth.addBank(this.bankForm.getRawValue())
-        .subscribe((result) => {
-          if (result.success == true) {
-            this.toastr.success('Bank added successfully', 'Success!');
-      location.reload(); // refresh the page
-      this.ngOnInit();
-          } else {
-            this.toastr.error(result.errorReason, 'Error!');
-          }
-        });
+        this.isLoading = true;
+      this.auth.addBank(this.bankForm.getRawValue()).subscribe((result) => {
+        if (result.success == true) {
+          this.toastr.success('Bank added successfully', 'Success!');
+          location.reload(); // refresh the page
+          this.ngOnInit();
+        } else {
+          this.toastr.error(result.errorReason, 'Error!');
+          this.isLoading = false;
+        }
+      });
     } else {
       this.toastr.error('Select Bank Please', 'Error!');
     }
   }
   onSubmitChangePassForm() {
     if (this.changePassForm.valid) {
+        this.isLoading = true;
       this.auth
         .changePass(this.changePassForm.getRawValue())
         .subscribe((result) => {
@@ -149,6 +152,7 @@ export class ProfileComponent implements OnInit {
             this.ngOnInit();
           } else {
             this.toastr.error(result.errorReason, 'Error!');
+            this.isLoading = false;
           }
         });
     } else {

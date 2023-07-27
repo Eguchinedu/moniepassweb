@@ -7,7 +7,7 @@
     flex: 1;
     padding: 10px 0;
     border: 1px solid #ccc;
-    background-color: rgb(193, 19, 19);
+    background-color: #f44336;
     color: white;
     transition: .5s ease-in-out;
 }
@@ -19,7 +19,7 @@
 }
 .confirm-yes:hover {
     cursor: pointer;
-    background-color: rgb(132, 18, 18);
+    background-color: rgb(165, 14, 14);
 
 }
 .confirm-no:hover {

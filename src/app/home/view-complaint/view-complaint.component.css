@@ -72,6 +72,39 @@ p {
 .complaint-img {
     margin: 10px 10px;
 }
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+.invoice-content {
+    text-align: center;
+}
+.invoice-texts {
+    color: var(--text-two);
+}
+.invoice-texts > p {
+    font-weight: 900;
+}
+.invoice-btn {
+    border: #ccc;
+    padding: 10px 14px;
+   color: var(--bg-one);
+   border-radius: 5px;
+    background-color: var(--text-two);
+    transition: .3s ease-in-out;
+    box-shadow: 0px 8px 26.850000381469727px 0px rgba(0, 29, 109, 0.35);
+}
+.invoice-btn:hover {
+    background-color: var(--text-one);
+}
+.invoice-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media only screen and (max-width: 1200px) {
 }
 @media only screen and (max-width: 1024px) {
