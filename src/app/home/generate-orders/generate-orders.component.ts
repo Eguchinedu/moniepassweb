@@ -46,6 +46,11 @@ export class GenerateOrdersComponent implements OnInit {
     this.auth.getClient(userName).subscribe((result) => {
       if (result) {
         this.customerUser = result;
+        if (this.auth.getUserName() === result.username) {
+          this.orderForm.controls['customerUsername'].setValue(null);
+          this.customerUser = null;
+          this.toastr.error('You cannot make a payment to yourself');
+        }
       } else {
         this.orderForm.controls['customerUsername'].setValue(null);
         this.customerUser = null;
