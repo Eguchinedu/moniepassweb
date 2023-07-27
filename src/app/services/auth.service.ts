@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { ILogin } from '../types/login';
 import { ISignUp } from '../types/sign-up';
 
+export const environment = {
+  uploadUrl: 'https://api.cloudinary.com/v1_1/dpa8pui0l/image/upload'
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -44,6 +47,19 @@ export class AuthService {
   // USER SECTION
   getClient(data: any): Observable<any> {
     return this.http.get(this.baseUrl + `client/username/${data}`);
+  }
+  //USER FEEDBACK SECTION
+  uploadImages(data: any): Observable<any> {
+    return this.http.post(
+      environment.uploadUrl,
+      data
+    )
+  }
+  postComplaint(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'order/add-complaint', data);
+  }
+  getComplaintById(data: any): Observable<any> {
+    return this.http.get(this.baseUrl + `complaint/complaintid/${data}`);
   }
 
   //INVOICES----------

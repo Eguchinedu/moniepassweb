@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="invoice-container">
+    <button class="go-back" (click)="goback()">
+      <i class="bi bi-caret-left-fill"></i>
+      Go Back
+    </button>
+    <div class="invoice-heading">
+      <h3 style="font-weight: 500">Complaints</h3>
+    </div>
+    <div class="invoice-body">
+      <div class="complaint-header">
+        <div class="complaint-title">
+          <p class="bold">Title</p>
+          <p>{{ feedBack?.customerComplaintTitle }}</p>
+        </div>
+        <div class="complaint-info">
+          <p>
+            <span class="bold">Complaint ID: </span>{{ feedBack?.complaintId }}
+          </p>
+          <div class="complaint-status">
+              <p *ngIf="feedBack?.complaintDecision === 0" class="pending">Pending</p>
+              <p *ngIf="feedBack?.complaintDecision === 1" class="approved">Approved</p>
+              <p *ngIf="feedBack?.complaintDecision === 2" class="declined">Declined</p>
+          </div>
+        </div>
+      </div>
+      <div class="complaint-body">
+        <div class="complaint-desc">
+          <p class="bold">Description</p>
+          <p>{{ feedBack?.customerComplaintDescription }}</p>
+        </div>
+        <div class="complaint-images">
+            <div class="complaint-img" *ngFor="let image of imageSrc">
+              <img src="{{ image }}" alt="image" width="100px" height="100px"  style="border-radius: 5px;"/>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,53 +1,61 @@
 <div class="container">
-    <div class="invoice-container">
-        <div class="invoice-heading">
-            <h3 style="font-weight: 500;">
-                Invoice(s)
-            </h3>
-        </div>
-        <div class="invoice-body">
-            <ng-container *ngIf="invoices?.length === 0">
-        <div class="invoice-body-container">
-            <div class="invoice-content">
-                <div class="invoice-img">
-                    <img src="../../../assets/images/46.png" width="100px" height="100px" alt="invoice">
-                </div>
-                <div class="invoice-text" style="width: 300px;">
-                    <p style="font-weight: 900;">No Invoices yet</p>
-                    <p>You currently do not have any invoices yet.Generate invoice in the home page.</p>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="invoices?.length > 0">
-        <div class="invoice-body-2" *ngFor="let invoice of invoices">
-            <div class="invoice-item">
-                <div class="invoice-texts">
-                        <p>Date Created: {{invoice?.lastModifiedDate | date: 'short'}}</p>
-                        <p>Invoice ID: {{invoice?.invoiceId}}</p>
-                        <p *ngIf="invoice?.status === 0" class="unpaid">
-          <span class="bold">Status: </span>
-          Pending
-        </p>
-        <p *ngIf="invoice?.status === 1" class="paid">
-          <span class="bold">Status: </span>
-          Withdrawn</p>
-        <p *ngIf="invoice?.status === 2" class="paid">
-          <span class="bold">Status: </span>
-          Processing Payment</p>
-        <p *ngIf="invoice?.status === 3" class="paid">
-          <span class="bold">Status: </span>
-          Payment Verified</p>
-        <p *ngIf="invoice?.status === 4" class="paid">
-          <span class="bold">Status: </span>
-          Payment Failed</p>
-                </div>
-                <div class="invoice-button-2">
-                    <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-        </div>
+  <div class="invoice-container">
+    <div class="invoice-heading">
+      <h3 style="font-weight: 500">Invoice(s)</h3>
     </div>
+    <div class="invoice-body">
+      <ng-container *ngIf="invoices?.length === 0">
+        <div class="invoice-body-container">
+          <div class="invoice-content">
+            <div class="invoice-img">
+              <img
+                src="../../../assets/images/46.png"
+                width="100px"
+                height="100px"
+                alt="invoice"
+              />
+            </div>
+            <div class="invoice-text" style="width: 300px">
+              <p style="font-weight: 900">No Invoices yet</p>
+              <p>
+                You currently do not have any invoices yet.Generate invoice in
+                the home page.
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="invoices?.length > 0">
+        <div class="invoice-body-2" *ngFor="let invoice of invoices">
+          <div class="invoice-item">
+            <div class="invoice-texts">
+              <p>
+                Date Created: {{ invoice?.lastModifiedDate | date : "short" }}
+              </p>
+              <p>Invoice ID: {{ invoice?.invoiceId }}</p>
+              <p *ngIf="invoice?.status === 0" class="pending">Pending</p>
+              <p *ngIf="invoice?.status === 1" class="withdrawn">Withdrawn</p>
+              <p *ngIf="invoice?.status === 2" class="processing-pay">
+                Processing Payment
+              </p>
+              <p *ngIf="invoice?.status === 3" class="pay-verified">
+                Payment Verified
+              </p>
+              <p *ngIf="invoice?.status === 4" class="pay-failed">
+                Payment Failed
+              </p>
+            </div>
+            <div class="invoice-button-2">
+              <button
+                class="invoice-btn-2"
+                (click)="viewInvoice(invoice?.invoiceId)"
+              >
+                View Invoice
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

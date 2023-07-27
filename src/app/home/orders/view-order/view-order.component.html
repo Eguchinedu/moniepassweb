@@ -46,6 +46,39 @@
           </p>
         </div>
       </div>
+      <div
+        class="complaint-details-section"
+        *ngIf="currentOrder?.complaintId === null"
+      >
+        <div class="complaint-title"><p class="bold">Complaints</p></div>
+        <div class="complaint-section">
+
+          <i class="bi bi-chat-dots"></i>
+          <p>
+            No Complaints
+          </p>
+        </div>
+      </div>
+      <div
+        class="complaint-details-section"
+        *ngIf="currentOrder?.complaintId !== null"
+      >
+        <div class="complaint-title"><p class="bold">Complaints</p></div>
+        <div class="complaint-section-2">
+          <p>
+            <span class="bold"> Complaint ID: </span>
+            {{ currentOrder?.complaintId }}
+          </p>
+          <div class="complaint-button">
+            <button
+              class="complaint-btn"
+              (click)="complaint(currentOrder?.complaintId)"
+            >
+              View
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="order-progress-section">
         <div class="order-progress" *ngFor="let stages of currentOrder?.stages">
           <div class="tracker" *ngIf="stages?.status !== 1"></div>
@@ -67,7 +100,7 @@
               productDelivered(currentOrder?.orderId, currentOrder?.status)
             "
             [disabled]="
-              currentOrder?.status === 2 || currentOrder?.status === 8
+              currentOrder?.status === 2 || currentOrder?.status === 8 || currentOrder?.status === 3
             "
           >
             Product Delivered
@@ -79,7 +112,7 @@
           <button
             class="invoice-btn"
             (click)="
-              productReceived(currentOrder?.orderId, currentOrder?.status)
+              productFeedback(currentOrder?.orderId, currentOrder?.status)
             "
             [disabled]="currentOrder?.status !== 2"
           >

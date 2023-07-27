@@ -65,6 +65,79 @@
     justify-content: center;
     align-items: center;
 }
+.pay-verified {
+    color: #4caf50;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.withdrawn{
+     color: #f44336;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.pending{
+     color: #ff9800;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.processing-pay{
+    color: #2196f3;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.pay-failed{
+    color: #f44336;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.pending2{
+     color: #ff9800;
+    font-weight: 800;
+    border-radius: 48px;
+}
+.pending2:hover{
+    background-color: #ccc;
+}
+.investigating{
+     color: #ff9800;
+    font-weight: 800;
+    border-radius: 48px;
+}
+.investigating:hover{
+    background-color: #ccc;
+}
+.not-confirmed {
+    color: #f44336;
+    background-color: #ccc;
+    font-weight: 800;
+    border-radius: 48px;
+}
+.not-confirmed:hover {
+    background-color: #ccc;
+}
+.confirmed{
+    color: #4caf50;
+    font-weight: 800;
+    border-radius: 48px;
+}
+.confirmed:hover {
+    background-color: #ccc;
+}
 @media only screen and (max-width: 1200px) {
 }
 @media only screen and (max-width: 1024px) {

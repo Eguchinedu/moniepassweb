@@ -34,32 +34,37 @@
             </div>
           </div>
         </ng-container>
-        <ng-container *ngIf="invoices?.length > 0 ">
-          <div class="invoice-body" >
+        <ng-container *ngIf="invoices?.length > 0">
+          <div class="invoice-body">
             <div class="invoice-list" *ngFor="let invoice of invoices">
               <div class="invoice-item">
                 <div class="invoice-texts">
-                  <p>Date Created: {{ invoice?.lastModifiedDate | date : "short" }}</p>
+                  <p>
+                    Date Created:
+                    {{ invoice?.lastModifiedDate | date : "short" }}
+                  </p>
                   <p>Invoice ID: {{ invoice?.invoiceId }}</p>
-                  <p *ngIf="invoice?.status === 0" class="unpaid">
-          <span class="bold">Status: </span>
-          Pending
-        </p>
-        <p *ngIf="invoice?.status === 1" class="paid">
-          <span class="bold">Status: </span>
-          Withdrawn</p>
-        <p *ngIf="invoice?.status === 2" class="paid">
-          <span class="bold">Status: </span>
-          Processing Payment</p>
-        <p *ngIf="invoice?.status === 3" class="paid">
-          <span class="bold">Status: </span>
-          Payment Verified</p>
-        <p *ngIf="invoice?.status === 4" class="paid">
-          <span class="bold">Status: </span>
-          Payment Failed</p>
+                  <p *ngIf="invoice?.status === 0" class="pending">Pending</p>
+                  <p *ngIf="invoice?.status === 1" class="withdrawn">
+                    Withdrawn
+                  </p>
+                  <p *ngIf="invoice?.status === 2" class="processing-pay">
+                    Processing Payment
+                  </p>
+                  <p *ngIf="invoice?.status === 3" class="pay-verified">
+                    Payment Verified
+                  </p>
+                  <p *ngIf="invoice?.status === 4" class="pay-failed">
+                    Payment Failed
+                  </p>
                 </div>
                 <div class="invoice-button-2">
-                  <button class="invoice-btn-2" (click)="viewInvoice(invoice?.invoiceId)">View Invoice</button>
+                  <button
+                    class="invoice-btn-2"
+                    (click)="viewInvoice(invoice?.invoiceId)"
+                  >
+                    View Invoice
+                  </button>
                 </div>
               </div>
             </div>
@@ -99,27 +104,58 @@
           </div>
         </ng-container>
         <ng-container *ngIf="orders?.length > 0">
-          <div class="invoice-body" >
+          <div class="invoice-body">
             <div class="invoice-list" *ngFor="let order of orders">
               <div class="invoice-item">
                 <div class="invoice-texts">
-                  <p>Date Created: {{ order?.lastModifiedDate | date : "short" }}</p>
+                  <p>
+                    Date Created: {{ order?.lastModifiedDate | date : "short" }}
+                  </p>
                   <p>Order ID: {{ order?.orderId }}</p>
                 </div>
                 <div class="invoice-button-2">
-                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 1" style="color: red;">Pending
+                  <button
+                    class="invoice-btn-2 pending2"
+                    (click)="viewOrder(order?.orderId)"
+                    *ngIf="order?.status === 1"
+                    
+                  >
+                    Pending
                     <i class="bi bi-arrow-right-circle"></i>
                   </button>
                   <ng-container *ngIf="order?.merchantUsername === userName">
-                    <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">Not Confirmed
-                    <i class="bi bi-arrow-right-circle"></i></button>
+                    <button
+                      class="invoice-btn-2 not-confirmed"
+                      (click)="viewOrder(order?.orderId)"
+                      *ngIf="order?.status === 2"
+                    >
+                      Not Confirmed <i class="bi bi-arrow-right-circle"></i>
+                    </button>
                   </ng-container>
-                  <ng-container *ngIf="order?.customerUsername=== userName">
-                    <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 2">Confirm Order
-                    <i class="bi bi-arrow-right-circle"></i></button>
+                  <ng-container *ngIf="order?.customerUsername === userName">
+                    <button
+                      class="invoice-btn-2 not-confirmed"
+                      (click)="viewOrder(order?.orderId)"
+                      *ngIf="order?.status === 2"
+                    >
+                      Order Delivered <i class="bi bi-arrow-right-circle"></i>
+                    </button>
                   </ng-container>
-                  
-                  <button class="invoice-btn-2" (click)="viewOrder(order?.orderId)" *ngIf="order?.status === 8" style="background-color: green; color: white;">Order Confirmed
+                  <button
+                    class="invoice-btn-2 investigating"
+                    (click)="viewOrder(order?.orderId)"
+                    *ngIf="order?.status === 3"
+                  >
+                    Investigating Order
+                    <i class="bi bi-arrow-right-circle"></i>
+                  </button>
+                  <button
+                    class="invoice-btn-2 confirmed"
+                    (click)="viewOrder(order?.orderId)"
+                    *ngIf="order?.status === 8"
+                    
+                  >
+                    Order Confirmed
                     <i class="bi bi-arrow-right-circle"></i>
                   </button>
                 </div>

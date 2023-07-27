@@ -47,6 +47,46 @@
 .invoice-btn-2:hover {
     font-weight: 700;
 }
+.pay-verified {
+    color: #4caf50;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.withdrawn{
+     color: #f44336;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.pending{
+     color: #ff9800;
+    background-color: #ccc;
+    font-weight: 800;
+    display: inline;
+    padding: 4px 12px;
+    border-radius: 48px;
+}
+.processing-pay{
+        color: #2196f3;
+        background-color: #ccc;
+        font-weight: 800;
+        display: inline;
+        padding: 4px 12px;
+        border-radius: 48px;
+}
+.pay-failed{
+        color: #f44336;
+        background-color: #ccc;
+        font-weight: 800;
+        display: inline;
+        padding: 4px 12px;
+        border-radius: 48px;
+}
 @media only screen and (max-width: 1200px) {
 }
 @media only screen and (max-width: 1024px) {

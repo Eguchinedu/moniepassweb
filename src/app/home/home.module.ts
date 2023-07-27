@@ -19,6 +19,7 @@ import { ConfirmOrderCustomerComponent } from './confirm-order-customer/confirm-
 import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/confirm-product-delivered.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ViewComplaintComponent } from './view-complaint/view-complaint.component';
 
 
 
@@ -36,6 +37,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ConfirmOrderCustomerComponent,
     ConfirmProductDeliveredComponent,
     FeedbackComponent,
+    ViewComplaintComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,11 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
       {
         path: 'orders/:id',
         component: ViewOrderComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'orders/:id/complaints/:id2',
+        component: ViewComplaintComponent,
         canActivate: [AuthGuard],
       },
       {

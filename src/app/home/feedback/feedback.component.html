@@ -5,7 +5,7 @@
       Go Back
     </button>
     <div class="invoice-heading">
-      <h3 style="font-weight: 500">Complaints</h3>
+      <h3 style="font-weight: 500">Give Feedback</h3>
     </div>
     <div class="invoice-body">
       <div class="form-body">
@@ -71,7 +71,7 @@
 </ngx-dropzone>
               </div>
               <div class="login-button">
-                <button class="log-btn" [disabled]="!feedBackForm.valid">
+                <button class="log-btn" [disabled]="!feedBackForm.valid || isLoading">
                   Submit
                 </button>
               </div>

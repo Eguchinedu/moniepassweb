@@ -35,13 +35,21 @@ export class ViewOrderComponent {
     this.auth.getOrderById(id).subscribe((order) => {
       this.currentOrder = order;
       console.log(this.currentOrder);
+      // if(this.user === this.currentOrder.merchantUsername && this.currentOrder.complaintId !== null ) {
+      //   this.toastr.error('You have a complaint on this order');
+      // }
     });
+    
     
 
 
   }
   goback() {
     window.history.back();
+  }
+
+  complaint(id: any){
+    this.router.navigate([`/orders/${this.orderId}/complaints/${id}`]);
   }
 
   productDelivered(id: any, status: any) {
@@ -68,10 +76,14 @@ export class ViewOrderComponent {
       }
     })}});
   }
-  productReceived(id: any, status: any) {
-    const confirm = {
+  productFeedback(id: any, status: any) {
+    const confirm1 = {
       orderId: id,
       status: 8,
+    };
+    const confirm2 = {
+      orderId: id,
+      status: 3,
     };
     return this.dialog
       .open(ConfirmOrderCustomerComponent, {
@@ -82,7 +94,7 @@ export class ViewOrderComponent {
       .afterClosed()
       .subscribe((result) => {
         if (result === 0) {
-    this.auth.confirmDeliveryMerchant(confirm).subscribe((result) => {
+    this.auth.confirmDeliveryMerchant(confirm1).subscribe((result) => {
       console.log(result);
       this.toastr.success('Feedback Sent');
       if (result.success === true) {
@@ -99,8 +111,27 @@ export class ViewOrderComponent {
       } else {
         this.toastr.error(result.errorReason);
       }
-    })} else if(result === 1){
-      this.router.navigate([`/orders/${id}/feedback`]);
+    })
+  } 
+  else if(result === 1){
+    this.auth.confirmDeliveryMerchant(confirm2).subscribe((result) => {
+      console.log(result);
+      if (result.success === true) {
+          this.router.navigate([`/orders/${id}/feedback`]);
+        } else {
+          this.toastr.error(result.errorReason);
+        }
+      });
+    }
+  else if(result === 2){
+    this.auth.confirmDeliveryMerchant(confirm2).subscribe((result) => {
+      console.log(result);
+      if (result.success === true) {
+          this.router.navigate([`/orders/${id}/feedback`]);
+        } else {
+          this.toastr.error(result.errorReason);
+        }
+      });
     }
   });
   }

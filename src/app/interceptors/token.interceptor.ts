@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { environment } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -18,15 +19,25 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
      const myToken = this.auth.getToken();
 
-
-    if (myToken) {
+    if (
+      this.isHeaderNeeded(
+        request.url
+      ) &&
+      myToken
+    ) {
       const cloned = request.clone({
-        headers: request.headers.set("Authorization",
-          "Bearer " + myToken)
+        headers: request.headers.set('Authorization', 'Bearer ' + myToken),
       });
-
       return next.handle(cloned);
     }
     return next.handle(request);
+  }
+  isHeaderNeeded(url: string) {
+      if (url === environment.uploadUrl) {
+        // this condition is up to you, it could be an exact match or how ever you like
+        return false;
+      } else {
+        return true;
+      }
   }
 }
