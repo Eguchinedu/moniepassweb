@@ -46,17 +46,17 @@
                     {{ invoice?.lastModifiedDate | date : "short" }}
                   </p>
                   <p>Invoice ID: {{ invoice?.invoiceId }}</p>
-                  <p *ngIf="invoice?.status === 0" class="pending">Pending</p>
-                  <p *ngIf="invoice?.status === 1" class="withdrawn">
+                  <p *ngIf="invoice?.status === 1" class="pending">Pending</p>
+                  <p *ngIf="invoice?.status === 2" class="withdrawn">
                     Withdrawn
                   </p>
-                  <p *ngIf="invoice?.status === 2" class="processing-pay">
+                  <p *ngIf="invoice?.status === 3" class="processing-pay">
                     Processing Payment
                   </p>
-                  <p *ngIf="invoice?.status === 3" class="pay-verified">
+                  <p *ngIf="invoice?.status === 4" class="pay-verified">
                     Payment Verified
                   </p>
-                  <p *ngIf="invoice?.status === 4" class="pay-failed">
+                  <p *ngIf="invoice?.status === 5" class="pay-failed">
                     Payment Failed
                   </p>
                 </div>
