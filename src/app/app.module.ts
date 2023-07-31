@@ -12,9 +12,16 @@ import { HomeModule } from './home/home.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CloudinaryModule } from '@cloudinary/ng';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoadingInterceptor } from './interceptors/loading';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, NavMenuComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+    NavMenuComponent,
+    // SpinnerComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -31,6 +38,11 @@ import { CloudinaryModule } from '@cloudinary/ng';
       useClass: TokenInterceptor,
       multi: true,
     },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: LoadingInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })

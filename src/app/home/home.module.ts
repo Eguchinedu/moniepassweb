@@ -20,6 +20,9 @@ import { ConfirmProductDeliveredComponent } from './confirm-product-delivered/co
 import { FeedbackComponent } from './feedback/feedback.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ViewComplaintComponent } from './view-complaint/view-complaint.component';
+import { SpinnerComponent } from '../components/spinner/spinner.component';
+import { LoadingInterceptor } from '../interceptors/loading';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -38,6 +41,7 @@ import { ViewComplaintComponent } from './view-complaint/view-complaint.componen
     ConfirmProductDeliveredComponent,
     FeedbackComponent,
     ViewComplaintComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +96,13 @@ import { ViewComplaintComponent } from './view-complaint/view-complaint.componen
     WithdrawInvoiceComponent,
     ConfirmOrderCustomerComponent,
     ConfirmProductDeliveredComponent,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
   ],
 })
 export class HomeModule {}
