@@ -174,11 +174,11 @@ input {
     align-items: center;
     margin-top: 20px;
 }
-.flex-form {
+/* .flex-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 .log-btn2 {
     width: 100%;
     border: none;

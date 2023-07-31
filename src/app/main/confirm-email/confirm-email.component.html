@@ -29,6 +29,52 @@
                     </div>
                 
         </div>
+        <div class="form-group">
+                <div class="password-span">
+                    <div class="error-field">
+                        <div class="input-icon">
+                            <i class="bi bi-lock"></i>
+                            <input [type]="changeType ? 'password' : 'text'" name="password" id="password" formControlName="password"  placeholder="Password" class="login-field" required 
+                />
+                        </div>
+                        <span class="icon-span" (click)="viewPass()"><i [class]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
+                        <span [class]="confirmForm.controls['password'].dirty && confirmForm.hasError('required', 'password') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+                <div class="password-span">
+                    <div class="error-field">
+                        <div class="input-icon">
+                    <i class="bi bi-lock"></i>
+                        <input [type]="changeType2 ? 'password' : 'text'"  id="confirmPassword"  placeholder="Confirm your password" formControlName="confirmPassword" class="login-field" required 
+            />
+                        </div>
+                        <span class="icon-span" (click)="viewPass2()"><i [class]="visible2 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
+                        <span [class]="confirmForm.controls['confirmPassword'].dirty && confirmForm.hasError('required', 'confirmPassword') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
+                    </div>
+                </div>
+        </div>
+        <div class="match-error">
+        <p
+          *ngIf="confirmForm.errors?.['passwordmatcherror']"
+          class="alert alert-danger"
+        >
+          Passwords do not match!!
+        </p>
+        <p
+          *ngIf="confirmForm.hasError('email', 'email')"
+          class="alert alert-danger"
+        >
+          Please type in a valid email
+        </p>
+        <p
+          *ngIf="confirmForm.hasError('minlength', 'password')"
+          class="alert alert-danger"
+        >
+          Password is too short, Must be at least 8 characters
+        </p>
+      </div>
         <div class="login-button">
             <button class="log-btn" *ngIf="!isLoading" [disabled]="!confirmForm.valid" >Confirm</button>
             <button class="log-btn2" *ngIf="isLoading"  disabled><i class='bx bx-loader-alt bx-spin bx-rotate-90' ></i></button>

@@ -30,14 +30,6 @@ export class SignUpFormComponent {
         lastName: new FormControl(null, [Validators.required]),
         username: new FormControl(null, [Validators.required]),
         email: new FormControl(null, [Validators.required, Validators.email]),
-        password: new FormControl(null, [
-          Validators.required,
-          Validators.minLength(8),
-        ]),
-        confirmPassword: new FormControl(null, [Validators.required]),
-      },
-      {
-        validators: this.MustMatch,
       }
     );
   }
@@ -53,22 +45,6 @@ export class SignUpFormComponent {
   get f() {
     return this.signUpForm.controls;
   }
-  MustMatch: ValidatorFn = (
-    control: AbstractControl
-  ): ValidationErrors | null => {
-    let password = control.get('password');
-    let confirmPassword = control.get('confirmPassword');
-
-    if (
-      password &&
-      confirmPassword &&
-      password?.value !== confirmPassword?.value
-    ) {
-      return { passwordmatcherror: true };
-    }
-    return null;
-  };
-
   onHttpError(errorResponse: any) {
     this.postError = true;
     this.postErrorMessage = errorResponse.error.errorMessage;
@@ -81,11 +57,11 @@ export class SignUpFormComponent {
       this.auth.signUp(this.signUpForm.getRawValue()).subscribe((result) => {
         if (result.success == true) {
           this.toastr.success(
-            'Account Created Successfully, Kindly confirm email',
+            'Account Created!, Verification Email has been sent to your email address.',
             'Success!'
           );
           this.auth.setEmail(user.email);
-          this.router.navigate(['sign-up/confirm-email']);
+          this.router.navigate(['/login']);
         } else {
           this.toastr.error(result.errorReason, 'Error!');
             this.isLoading = false;

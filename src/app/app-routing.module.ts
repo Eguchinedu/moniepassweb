@@ -12,7 +12,7 @@ import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {
-    path: 'forgot-pwd/confirm-pwd',
+    path: 'confirm-pwd',
     component: ConfirmPasswordComponent,
     canActivate: [LoginGuard],
   },

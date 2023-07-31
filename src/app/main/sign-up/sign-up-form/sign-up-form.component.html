@@ -52,32 +52,6 @@
             </div>
         </div>
         </div>
-        <div class="form-group">
-                <div class="password-span">
-                    <div class="error-field">
-                        <div class="input-icon">
-                            <i class="bi bi-lock"></i>
-                            <input [type]="changeType ? 'password' : 'text'" name="password" id="password" formControlName="password"  placeholder="Password" class="login-field" required 
-                />
-                        </div>
-                        <span class="icon-span" (click)="viewPass()"><i [class]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
-                        <span [class]="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
-                    </div>
-                </div>
-        </div>
-        <div class="form-group">
-                <div class="password-span">
-                    <div class="error-field">
-                        <div class="input-icon">
-                    <i class="bi bi-lock"></i>
-                        <input [type]="changeType2 ? 'password' : 'text'"  id="confirmPassword"  placeholder="Confirm your password" formControlName="confirmPassword" class="login-field" required 
-            />
-                        </div>
-                        <span class="icon-span" (click)="viewPass2()"><i [class]="visible2 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i></span>
-                        <span [class]="signUpForm.controls['confirmPassword'].dirty && signUpForm.hasError('required', 'confirmPassword') ? 'error-show' : 'error-span'"><i class="bi bi-x-circle"></i></span>
-                    </div>
-                </div>
-        </div>
         <div class="match-error">
             <p *ngIf="signUpForm.errors?.['passwordmatcherror']" class="alert alert-danger">Passwords do not match!!</p>
             <p *ngIf="signUpForm.hasError('email', 'email')" class="alert alert-danger">Please type in a valid email</p>

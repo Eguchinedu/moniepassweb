@@ -48,7 +48,7 @@ export class ForgotPasswordComponent {
               'Success!'
             );
             this.auth.setEmail(user.email);
-            this.router.navigate(['forgot-pwd/confirm-pwd']);
+            this.router.navigate(['/confirm-pwd']);
           } else {
             this.toastr.error(result.errorReason, 'Error!');
             this.isLoading = false;

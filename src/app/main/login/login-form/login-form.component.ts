@@ -63,9 +63,10 @@ export class LoginFormComponent {
           } 
           else if (result.errorReason === 'Email has not been confirmed') {
             this.toastr.error(
-              `${result.errorReason}, Check email for code`,
+              `${result.errorReason}, Check email for code and confirm email`,
               'Error!'
             );
+          this.auth.setEmail(this.loginForm.value.email);
             this.router.navigate(['sign-up/confirm-email']);
           } 
           else {
