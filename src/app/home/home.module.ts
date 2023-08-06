@@ -103,6 +103,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
       useClass: LoadingInterceptor,
       multi: true,
     },
+
   ],
 })
 export class HomeModule {}

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { getMessaging, onMessage } from 'firebase/messaging';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,13 +11,42 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavMenuComponent {
   isMenuRequired = false;
-  constructor(private router: Router, private auth: AuthService) {}
-  ngOnInit(): void {}
+  messageArray: any[] = [];
+  message: any;
+  time: any = new Date();
+  count = 0;
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private toastr: ToastrService
+  ) {}
+  ngOnInit(): void {
+    this.updateCount();
+  }
 
   isLoggedIn() {
     return this.auth.isLoggedIn();
   }
   signOut() {
     this.auth.signOut();
+  }
+  resetCount() {
+    this.count = 0;
+  }
+  updateCount() {
+    console.log('heyy');
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+      console.log('Message received. ', payload);
+      console.log(payload);
+      this.message = payload;
+      this.toastr.success(
+        this.message.notification.body,
+        this.message.notification.title
+      );
+      this.messageArray.push(payload);
+      console.log(this.messageArray);
+      this.count++;
+    });
   }
 }

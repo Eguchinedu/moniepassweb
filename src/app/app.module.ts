@@ -14,12 +14,21 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './interceptors/loading';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { environment } from '../environments/environment';
+import { initializeApp } from 'firebase/app';
+import { TimeAgoExtendsPipe} from './pipes/time-ago.pipe';
+
+initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     NavMenuComponent,
+    TimeAgoExtendsPipe,
     // SpinnerComponent,
   ],
   imports: [
@@ -28,6 +37,9 @@ import { LoadingInterceptor } from './interceptors/loading';
     BrowserAnimationsModule,
     MatTooltipModule,
     CloudinaryModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
     ToastrModule.forRoot(),
     HomeModule,
     AppRoutingModule,

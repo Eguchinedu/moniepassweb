@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GenerateInvoiceComponent } from '../generate-invoice/generate-invoice.component';
 import { GenerateOrdersComponent } from '../generate-orders/generate-orders.component';
+import { FirebaseMessagingService } from 'src/app/services/firebase-messaging.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 
 @Component({
@@ -21,12 +23,16 @@ export class HomeComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private dialog: MatDialog,
-    
+    private FCM: FirebaseMessagingService,
+    private notify: NotificationsService
   ) {
     this.user = this.auth.getFirstName();
     this.userName = this.auth.getUserName();
   }
   ngOnInit(): void {
+    this.FCM.requestPermission();
+    // this.FCM.listen();
+    
     this.loadInvoices(this.auth.getUserName());
     this.loadOrders(this.auth.getUserName());
   }
@@ -69,5 +75,18 @@ export class HomeComponent implements OnInit {
   }
   viewOrder(id: any): void {
     this.router.navigate(['/orders', id]);
+  }
+  sendNotification() {
+    const data = {
+      notification: {
+        title: 'Moniepass',
+        body: 'New Requests',
+      },
+      to: this.auth.getWebDeviceId(),
+    };
+    console.log(data);
+    this.notify.getNotification(data).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

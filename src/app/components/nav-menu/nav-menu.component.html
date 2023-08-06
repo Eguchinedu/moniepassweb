@@ -1,49 +1,87 @@
 <nav *ngIf="isLoggedIn()" class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <div class="nav-tog">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon" matTooltip="Menu"></span>
-        </button>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon" matTooltip="Menu"></span>
+      </button>
     </div>
-        <a class="navbar-brand" [routerLink]="['/home']">
-          <div class="section-header">
- <img src="../../../../assets/images/moniepass.png"  width="100px"/>
-    </div>
-          </a
-        >
-    
+    <a class="navbar-brand" [routerLink]="['/home']">
+      <div class="section-header">
+        <img src="../../../../assets/images/moniepass.png" width="100px" />
+      </div>
+    </a>
+
     <div class="nav-icons">
       <a
-              class="nav-link-2"
-              aria-current="page"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/Notifications']"
-              matTooltip="Notifications"
-            >
-            <div style="position:relative;display:inline-block;margin:20px 20px 10px 20px;">
-                <i class="bi bi-bell" ></i>
-                <span class="e-badge e-badge-danger e-badge-overlap e-badge-notification">99+</span>
-            </div>
-            </a>
+        class="nav-link-2"
+        aria-current="page"
+        matTooltip="Notifications"
+        (click)="resetCount()"
+      >
+        <div
+          style="
+            position: relative;
+            display: inline-block;
+            margin: 15px 15px 10px 15px;
+          "
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+          <i class="bi bi-bell"></i>
+          <span
+            class="e-badge e-badge-danger e-badge-overlap e-badge-notification"
+            *ngIf="count > 0"
+            >{{ count }}</span
+          >
+        </div>
+      </a>
+      <mat-menu #menu="matMenu">
+        <ng-container *ngIf="messageArray.length === 0">
+          <button class="notify-menu">
+            <span class="notify-text">
+              <b>No Notifications</b>
+            </span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="messageArray.length > 0">
+          <ng-container *ngFor="let notify of messageArray">
+            <button class="notify-menu-2">
+              <span class="notify-text-2">
+                <p>{{ notify?.notification.title }}</p>
+                <p>
+                  {{ notify?.notification.body }}
+                </p>
+              </span>
+              <span class="notify-time">
+                <p>{{ time | timeAgo }}</p>
+                <i class="bi bi-eye"></i>
+              </span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </mat-menu>
       <a
-              class="nav-link-2  responsive"
-              aria-current="page"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/home/profile']"
-              matTooltip="Profile"
-            >
-            <i class="bi bi-person" ></i>
-            </a>
-      <i (click)="signOut()" class="bi bi-box-arrow-right  responsive" matTooltip="Logout"></i>
+        class="nav-link-2 responsive"
+        aria-current="page"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/home/profile']"
+        matTooltip="Profile"
+      >
+        <i class="bi bi-person"></i>
+      </a>
+      <i
+        (click)="signOut()"
+        class="bi bi-box-arrow-right responsive"
+        matTooltip="Logout"
+      ></i>
     </div>
 
     <div
@@ -70,7 +108,7 @@
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/home/profile']"
             >
-            <div class="link-flex">
+              <div class="link-flex">
                 <div class="icon">
                   <i class="bi bi-person-fill"></i>
                 </div>
@@ -133,22 +171,22 @@
               </div></a
             >
           </li>
-                    <li class="nav-item mobile">
-            <a
-              class="nav-link-log"
-            >
-            <div class="link-flex">
+          <li class="nav-item mobile">
+            <a class="nav-link-log">
+              <div class="link-flex">
                 <div class="icon">
-                  <i (click)="signOut()" class="bi bi-box-arrow-right" matTooltip="Logout"></i>
+                  <i
+                    (click)="signOut()"
+                    class="bi bi-box-arrow-right"
+                    matTooltip="Logout"
+                  ></i>
                 </div>
                 <div class="link">
                   <p>Logout</p>
                 </div>
               </div>
             </a>
-      
           </li>
-
         </ul>
       </div>
     </div>
