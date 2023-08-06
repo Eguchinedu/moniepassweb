@@ -88,7 +88,7 @@ export class GenerateInvoiceComponent implements OnInit {
   sendNotification() {
       const data = {
         notification: {
-          title: 'Moniepass',
+          title: 'Invoice',
           body: 'New Invoice from ' + this.auth.getUserName(),
         },
         to: this.webDeviceId,

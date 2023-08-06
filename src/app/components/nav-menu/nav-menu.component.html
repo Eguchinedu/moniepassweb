@@ -19,20 +19,18 @@
     </a>
 
     <div class="nav-icons">
-      <button class="ms-auto navbar-toggler"
-      matTooltip="Notifications"
+      <button
+        class="ms-auto navbar-toggler"
+        matTooltip="Notifications"
         (click)="resetCount()"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasNotifications"
-              aria-controls="offcanvasNotifications">
-        <div
-          style="
-            position: relative;
-            display: inline-block;
-          "
-        >
-          <i class="bi bi-bell"></i>
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNotifications"
+        aria-controls="offcanvasNotifications"
+        mat-icon-button
+      >
+        <div style="position: relative; display: inline-block">
+          <mat-icon>notifications_none</mat-icon>
           <span
             class="e-badge e-badge-danger e-badge-overlap e-badge-notification"
             *ngIf="count > 0"
@@ -40,65 +38,77 @@
           >
         </div>
       </button>
-      <div class="offcanvas offcanvas-end bg-secondary"
-     data-bs-backdrop="static"
-     tabindex="-1"
-     id="offcanvasNotifications"
-     aria-labelledby="offcanvasNotificationsLabel">
-  <div class="offcanvas-header">
-    <h2 class="h5 text-black offcanvas-title"
-        id="offcanvasNotificationsLabel">
-      All Notifications
-    </h2>
-    <button type="button"
+      <div
+        class="offcanvas offcanvas-end bg-secondary"
+        data-bs-backdrop="static"
+        tabindex="-1"
+        id="offcanvasNotifications"
+        aria-labelledby="offcanvasNotificationsLabel"
+      >
+        <div class="offcanvas-header">
+          <h2
+            class="h5 text-black offcanvas-title"
+            id="offcanvasNotificationsLabel"
+          >
+            <i class="bi bi-bell-fill"></i>
+            Notifications
+          </h2>
+          <button
+            type="button"
             class="btn-close"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ng-container *ngIf="messageArray.length === 0">
-          
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ng-container *ngIf="messageArray.length === 0">
             <div class="no-notification">
-              <p class="h5 text-black">No Notifications</p>
+              <p class="h5 text-black">
+                <i class="bi bi-bell-slash-fill"></i>
+                No Notifications
+              </p>
             </div>
-          
-        </ng-container>
-        <ng-container *ngIf="messageArray.length > 0">
-          <ng-container *ngFor="let notify of messageArray">
-            <div class="notify-card">
-  <div class="notify-card-body">
-    <div class="card-body1">
-      <ng-container *ngIf="notify?.notification.title === 'Invoice'">
-        <i class="bi bi-receipt"></i>
-      </ng-container>
-      <ng-container *ngIf="notify?.notification.title === 'Order'">
-                  <i class="bi bi-bag-fill"></i>
-      </ng-container>
-      <ng-container *ngIf="notify?.notification.title === 'Complaint'">
-                  <i class="bi bi-broadcast"></i>
-      </ng-container>
-      
-    </div>
-    <div class="card-body2">
-
-      <div class="notify-flex">
-        <h3 class="notify-card-title">
-          {{ notify?.notification.title }}
-        </h3>
-        <span class="notify-date">
-          {{ time | timeAgo }}
-        </span>
-      </div>
-      <p class="notify-card-text">
-        {{ notify?.notification.body }}
-      </p>
-    </div>
-  </div>
-</div>
           </ng-container>
-        </ng-container>
-  </div>
-</div>
+          <ng-container *ngIf="messageArray.length > 0">
+            <ng-container *ngFor="let notify of messageArray">
+              <div class="notify-card">
+                <div class="notify-card-body">
+                  <div class="card-body1">
+                    <ng-container
+                      *ngIf="notify?.notification.title === 'Invoice'"
+                    >
+                      <i class="bi bi-receipt"></i>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="notify?.notification.title === 'Order'"
+                    >
+                      <i class="bi bi-bag-fill"></i>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="notify?.notification.title === 'Complaint'"
+                    >
+                      <i class="bi bi-broadcast"></i>
+                    </ng-container>
+                  </div>
+                  <div class="card-body2">
+                    <div class="notify-flex">
+                      <h3 class="notify-card-title">
+                        {{ notify?.notification.title }}
+                      </h3>
+                      <span class="notify-date">
+                        {{ time | timeAgo }}
+                      </span>
+                    </div>
+                    <p class="notify-card-text">
+                      {{ notify?.notification.body }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
       <a
         class="nav-link-2 responsive"
         aria-current="page"
@@ -106,14 +116,13 @@
         [routerLinkActiveOptions]="{ exact: true }"
         [routerLink]="['/home/profile']"
         matTooltip="Profile"
+        mat-icon-button
       >
-        <i class="bi bi-person"></i>
+        <mat-icon>person_outline</mat-icon>
       </a>
-      <i
-        (click)="signOut()"
-        class="bi bi-box-arrow-right responsive"
-        matTooltip="Logout"
-      ></i>
+      <button mat-icon-button (click)="signOut()" class="responsive" matTooltip="Logout">
+        <mat-icon class="logout">exit_to_app</mat-icon>
+      </button>
     </div>
 
     <div

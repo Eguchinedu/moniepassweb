@@ -82,10 +82,11 @@
 ;
     text-decoration: none !important;
 }
-.bi-box-arrow-right{
+.logout{
         color:#E12525;
 
 }
+
 .offcanvas-header, .offcanvas-body {
    background-color: #fff;
 }
@@ -95,17 +96,6 @@
     justify-content: center;
     align-items: center;
 }
-/* .notify-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #001D6D;
-    background-color: #001D6D;
-    color: #fff;
-    border-radius: 6px 6px 0 0;
-    padding: 10px;
-} */
 .notify-card-body {
     border-bottom: 1px solid #ccc;
     padding: 10px 5px;

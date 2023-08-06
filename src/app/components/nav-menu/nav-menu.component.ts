@@ -12,18 +12,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavMenuComponent {
   isMenuRequired = false;
   messageArray: any[] = [
-    {notification : {
-      title: 'Invoice',
-      body: 'You have a new invoice from Zeus_Egu',
-    }},
-    {notification : {
-      title: 'Order',
-      body: 'You have a new order from Zeus_Egu',
-    }},
-    {notification : {
-      title: 'Complaint',
-      body: 'there was a complaint from Zeus_Egu',
-    }}
+    // {notification : {
+    //   title: 'Invoice',
+    //   body: 'You have a new invoice from Zeus_Egu',
+    // }},
+    // {notification : {
+    //   title: 'Order',
+    //   body: 'You have a new order from Zeus_Egu',
+    // }},
+    // {notification : {
+    //   title: 'Complaint',
+    //   body: 'there was a complaint from Zeus_Egu',
+    // }}
   ];
   message: any;
   time: any = new Date();
