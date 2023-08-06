@@ -19,20 +19,18 @@
     </a>
 
     <div class="nav-icons">
-      <a
-        class="nav-link-2"
-        aria-current="page"
-        matTooltip="Notifications"
+      <button class="ms-auto navbar-toggler"
+      matTooltip="Notifications"
         (click)="resetCount()"
-      >
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNotifications"
+              aria-controls="offcanvasNotifications">
         <div
           style="
             position: relative;
             display: inline-block;
-            margin: 15px 15px 10px 15px;
           "
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
         >
           <i class="bi bi-bell"></i>
           <span
@@ -41,32 +39,66 @@
             >{{ count }}</span
           >
         </div>
-      </a>
-      <mat-menu #menu="matMenu">
-        <ng-container *ngIf="messageArray.length === 0">
-          <button class="notify-menu">
-            <span class="notify-text">
-              <b>No Notifications</b>
-            </span>
-          </button>
+      </button>
+      <div class="offcanvas offcanvas-end bg-secondary"
+     data-bs-backdrop="static"
+     tabindex="-1"
+     id="offcanvasNotifications"
+     aria-labelledby="offcanvasNotificationsLabel">
+  <div class="offcanvas-header">
+    <h2 class="h5 text-black offcanvas-title"
+        id="offcanvasNotificationsLabel">
+      All Notifications
+    </h2>
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ng-container *ngIf="messageArray.length === 0">
+          
+            <div class="no-notification">
+              <p class="h5 text-black">No Notifications</p>
+            </div>
+          
         </ng-container>
         <ng-container *ngIf="messageArray.length > 0">
           <ng-container *ngFor="let notify of messageArray">
-            <button class="notify-menu-2">
-              <span class="notify-text-2">
-                <p>{{ notify?.notification.title }}</p>
-                <p>
-                  {{ notify?.notification.body }}
-                </p>
-              </span>
-              <span class="notify-time">
-                <p>{{ time | timeAgo }}</p>
-                <i class="bi bi-eye"></i>
-              </span>
-            </button>
+            <div class="notify-card">
+  <div class="notify-card-body">
+    <div class="card-body1">
+      <ng-container *ngIf="notify?.notification.title === 'Invoice'">
+        <i class="bi bi-receipt"></i>
+      </ng-container>
+      <ng-container *ngIf="notify?.notification.title === 'Order'">
+                  <i class="bi bi-bag-fill"></i>
+      </ng-container>
+      <ng-container *ngIf="notify?.notification.title === 'Complaint'">
+                  <i class="bi bi-broadcast"></i>
+      </ng-container>
+      
+    </div>
+    <div class="card-body2">
+
+      <div class="notify-flex">
+        <h3 class="notify-card-title">
+          {{ notify?.notification.title }}
+        </h3>
+        <span class="notify-date">
+          {{ time | timeAgo }}
+        </span>
+      </div>
+      <p class="notify-card-text">
+        {{ notify?.notification.body }}
+      </p>
+    </div>
+  </div>
+</div>
           </ng-container>
         </ng-container>
-      </mat-menu>
+  </div>
+</div>
       <a
         class="nav-link-2 responsive"
         aria-current="page"
