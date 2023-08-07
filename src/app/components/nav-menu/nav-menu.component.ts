@@ -57,7 +57,7 @@ export class NavMenuComponent {
         this.message.notification.body,
         this.message.notification.title
       );
-      this.messageArray.push(payload);
+      this.messageArray.unshift(payload);
       console.log(this.messageArray);
       this.count++;
     });

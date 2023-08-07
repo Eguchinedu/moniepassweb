@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 
 @Component({
@@ -16,12 +17,13 @@ export class GenerateOrdersComponent implements OnInit {
   customerUser!: any;
   customer!: true;
   serviceFee!: any;
-
+  webDeviceId!: string;
   constructor(
     private dialog: MatDialogRef<GenerateOrdersComponent>,
     private toastr: ToastrService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private notify: NotificationsService
   ) {
     this.orderForm = new FormGroup({
       invoiceId: new FormControl(''),
@@ -34,7 +36,7 @@ export class GenerateOrdersComponent implements OnInit {
       customerAddress: new FormControl(null, [Validators.required]),
       amount: new FormControl(null, [Validators.required]),
       narration: new FormControl(null),
-      isMobileDevice: new FormControl(false)
+      isMobileDevice: new FormControl(false),
     });
   }
   ngOnInit(): void {}
@@ -46,6 +48,7 @@ export class GenerateOrdersComponent implements OnInit {
     this.auth.getClient(userName).subscribe((result) => {
       if (result) {
         this.customerUser = result;
+        this.webDeviceId = this.customerUser.webDeviceId;
         if (this.auth.getUserName() === result.username) {
           this.orderForm.controls['customerUsername'].setValue(null);
           this.customerUser = null;
@@ -69,18 +72,33 @@ export class GenerateOrdersComponent implements OnInit {
       }
     });
   }
+  sendNotification() {
+    const data = {
+      notification: {
+        title: 'Order',
+        body: 'New Payment from ' + this.auth.getUserName(),
+      },
+      to: this.webDeviceId,
+    };
+    console.log(data);
+    this.notify.getNotification(data).subscribe((res) => {
+      console.log(res);
+      if (res.success > 0) {
+        this.closeDialog();
+      }
+    });
+  }
   onSubmit() {
     if (this.orderForm.valid) {
-      this.auth.genOrder(this.orderForm.getRawValue())
-      .subscribe((result) => {
+      this.auth.genOrder(this.orderForm.getRawValue()).subscribe((result) => {
         if (result.success == true) {
           this.toastr.success('Order generated Successfully', 'Success!');
-          this.closeDialog();
+          this.sendNotification();
           window.location.href = result.data.authorizationUrl;
-          } else {
-            this.toastr.error(result.errorReason, 'Error!');
-          }
-        });
+        } else {
+          this.toastr.error(result.errorReason, 'Error!');
+        }
+      });
     } else {
       this.toastr.error('Please Fill in details', 'Error!');
     }
